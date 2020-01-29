@@ -47,7 +47,7 @@ router.get('/changepass',async(req,res) => {
 });
 router.post('/changepass', passport.authenticate('local.change', {
   	successRedirect: '/perfil',
-  	failureRedirect: '/links/changepass',
+  	failureRedirect: '/perfil/changepass',
   	failureFlash: true
 }));
 

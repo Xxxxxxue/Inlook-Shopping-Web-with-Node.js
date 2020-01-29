@@ -1,0 +1,96 @@
+<div class="col-lg-9">
+  <div class="text-right">
+    <a href="/perfil"><button class="btn-success">Volver</button></a>
+  </div>
+  <div class="form-body">
+    <div class="card-body">	
+      <h4>Datos de Personles</h4>
+
+      <form action="/perfil/editarmisdatos" method="POST">
+        <div class="row">
+          <div class="col-5 mt-3 text-center">
+            <img src="/image/icon.jpg" id="foto" alt="foto" style="border-radius: 50%; width:70%;">
+            <br><br>
+            ID: {{user.id}}
+            <br><br>
+              <a href=""><button class="btn-success" onclick="imgChange(foto)">Cambiar foto</button></a>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <i class="fas fa-user-alt" aria-hidden="true"></i>
+              <input class="form-control form-control-sm validate" type="text" name="nombre">Tu Nombre
+            </div>
+            <div class="form-group">
+              <i class="fas fa-user-alt" aria-hidden="true"></i>
+              <input class="form-control form-control-sm validate" type="text" name="apellidos">Tu Apellido
+            </div>
+            <div class="form-group">
+              <i class="fas fa-envelope prefix" aria-hidden="true"></i>
+              <input class="form-control form-control-sm validate" type="email" name="email">Tu Correo
+            </div>
+            <div class="form-group">
+              <i class="fas fa-phone-alt" aria-hidden="true"></i>
+              <input class="form-control form-control-sm validate" type="text" name="telefono">Tu Telefono
+            </div>
+
+            <div>
+          Direccion:
+          <input class="form-control form-control-sm validate" type="text" name="direccion" value="{{direccion}}">
+          Localidad:
+          <input class="form-control form-control-sm validate" type="text" name="localidad" value="{{localidad}}">
+          Codigo Postal:
+          <input class="form-control form-control-sm validate" type="number" name="cpostal" value="{{cpostal}}">
+          Provincia:
+          <input class="form-control form-control-sm validate" type="text" name="provincia" value="{{provincia}}">
+          Pais:
+          <input class="form-control form-control-sm validate" type="text" name="pais" value="{{pais}}">
+          Entrega/Facturacion:
+          <input class="form-control form-control-sm validate" type="radio" name="entrega">
+          <input class="form-control form-control-sm validate" type="radio" name="facturacion">
+          Preferida:
+          <input class="form-control form-control-sm validate" type="checked">     
+        </div>
+          </div>
+        </div>
+
+      <hr><br>
+      <div class="row">
+        <h4>Direciones</h4>
+        <a href="/links/dir-add" class="text-right"><button class="btn-success">Nueva direccion</button></a>
+        {{#each dirs}}
+        <div>
+          Direccion:
+          <input class="form-control form-control-sm validate" type="text" name="direccion" value="{{direccion}}">
+          Localidad:
+          <input class="form-control form-control-sm validate" type="text" name="localidad" value="{{localidad}}">
+          Codigo Postal:
+          <input class="form-control form-control-sm validate" type="number" name="cpostal" value="{{cpostal}}">
+          Provincia:
+          <input class="form-control form-control-sm validate" type="text" name="provincia" value="{{provincia}}">
+          Pais:
+          <input class="form-control form-control-sm validate" type="text" name="pais" value="{{pais}}">
+          Entrega/Facturacion:
+          <input class="form-control form-control-sm validate" type="radio" name="entrega">
+          <input class="form-control form-control-sm validate" type="radio" name="facturacion">
+          Preferida:
+          <input class="form-control form-control-sm validate" type="checked">     
+        </div>
+
+        {{else}}
+        <div>
+          <p>No has guardado ninguna direccion.</p>
+
+        </div>
+        {{/each}}
+
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center">
+    <button class="btn-success">Guardar</button>
+  </div>
+
+</form>
+</div>

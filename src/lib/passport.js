@@ -52,11 +52,13 @@ passport.use('local.change', new LocalStrategy({
 		clave
 	};
 
-	console.log(req.body);
+	console.log(req.session);
 	//ciframos la contrasena mediante helpers.js
 	newUser.clave = await helpers.encryptPassword(clave);
 	//cambiar
-	await db.query('UPDATE tusuario SET ? WHERE id=?', [newUser,req.id]);
+	await db.query('UPDATE tusuario SET clave=? WHERE id=?', [newUser.clave,req.session.ID]);
+
+	console.log(newUser);
 	return done(null,newUser); 
 
 }));
@@ -93,7 +95,7 @@ passport.use('local.login', new LocalStrategy({
 //Un fallo en que no te deja serializarse por login
 passport.serializeUser((user,done) => {
 	console.log(user);
-	done(null,user.id);
+	done(null,user.ID);
 });
 
 passport.deserializeUser(async (id, done) => {
