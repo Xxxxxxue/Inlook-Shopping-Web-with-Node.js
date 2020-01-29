@@ -35,22 +35,23 @@
             </div>
 
             <div>
-          Direccion:
-          <input class="form-control form-control-sm validate" type="text" name="direccion" value="{{direccion}}">
-          Localidad:
-          <input class="form-control form-control-sm validate" type="text" name="localidad" value="{{localidad}}">
-          Codigo Postal:
-          <input class="form-control form-control-sm validate" type="number" name="cpostal" value="{{cpostal}}">
-          Provincia:
-          <input class="form-control form-control-sm validate" type="text" name="provincia" value="{{provincia}}">
-          Pais:
-          <input class="form-control form-control-sm validate" type="text" name="pais" value="{{pais}}">
-          Entrega/Facturacion:
-          <input class="form-control form-control-sm validate" type="radio" name="entrega">
-          <input class="form-control form-control-sm validate" type="radio" name="facturacion">
-          Preferida:
-          <input class="form-control form-control-sm validate" type="checked">     
-        </div>
+          
+          <input class="form-control form-control-sm validate" type="text" name="direccion" value="{{direccion}}">Dirección
+          
+          <input class="form-control form-control-sm validate" type="text" name="localidad" value="{{localidad}}">Localidad
+          
+          <input class="form-control form-control-sm validate" type="number" name="cpostal" value="{{cpostal}}">Codigo Postal
+          
+          <input class="form-control form-control-sm validate" type="text" name="provincia" value="{{provincia}}">Provincia
+          
+          <input class="form-control form-control-sm validate" type="text" name="pais" value="{{pais}}">Pais
+          <br>
+          <input class="form-group" type="radio" name="entrega" id="entrega">
+          <label for="entrega">Dirección de entrega</label>
+          <br>
+          <input class="form-group" type="radio" name="facturacion" id="factura">
+          <label for="factura">Dirección de facturación</label>
+
           </div>
         </div>
 
@@ -71,8 +72,8 @@
           Pais:
           <input class="form-control form-control-sm validate" type="text" name="pais" value="{{pais}}">
           Entrega/Facturacion:
-          <input class="form-control form-control-sm validate" type="radio" name="entrega">
-          <input class="form-control form-control-sm validate" type="radio" name="facturacion">
+          <input class="form-control form-control-sm" type="radio" name="entrega">
+          <input class="form-control form-control-sm" type="radio" name="facturacion">
           Preferida:
           <input class="form-control form-control-sm validate" type="checked">     
         </div>

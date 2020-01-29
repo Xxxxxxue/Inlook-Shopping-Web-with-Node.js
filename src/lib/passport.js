@@ -57,8 +57,7 @@ passport.use('local.change', new LocalStrategy({
 	newUser.clave = await helpers.encryptPassword(clave);
 	//cambiar
 	await db.query('UPDATE tusuario SET clave=? WHERE id=?', [newUser.clave,req.session.ID]);
-
-	console.log(newUser);
+	
 	return done(null,newUser); 
 
 }));
