@@ -11,9 +11,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/shop-homepage.css">
 
+    <!-- ICONOS -->
+    <script src="https://kit.fontawesome.com/6c610a6e67.js" crossorigin="anonymous"></script>
+
+    <script>
+//guardas imagenes en el array
+var cambia_imagen = new Array();
+cambia_imagen[0] = "/image/1.png";
+cambia_imagen[1] = "/image/2.png";
+cambia_imagen[2] = "/image/3.png";
+cambia_imagen[3] = "/image/4.png";
+
+//la función para que al clickear establezca el source del tag imagem que tiene id "ia" (Imagen aleatoria)
+//como no son tantas, puede que alguna vez se repita 2 veces la misma
+//incluso, si usamos numeros para las imágenes, la script puede ser más sencilla
+
+function cambiar(){
+     document.getElementById("ia").src = cambia_imagen[Math.floor(Math.random() * 3 + 1 )];
+  setTimeout("cambiar()",500)
+}
+    
+</script>
+
     <title>INLOOK</title>
   </head>
-  <body>
+
+
+  <body onload="cambiar()">
     <nav class="navegacion">
       <nav class="navbar navbar-expand-lg navbar-dark bg-Purple fixed-top">
         <div class="container">
@@ -41,16 +65,23 @@
             </ul>
 
             <div class="log">
-              <button type="submit" class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
-              <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#asceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button>
+              <a href=""><button class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button></a>
+              <a href="/login"><button class="btn btn-success" data-toggle="modal" data-target="#asceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button></a>
+              
             </div>
           </div>
         </div>
 
       </nav>
     </nav>
-    {{{body}}}
-
+    <div class="container">
+      <div class="row">
+        {{>img_hola}}
+        <!--{{>slider_main}} , no hace falta porque llama desde index-->
+        {{{body}}}
+      </div>
+    </div>
+    
 
     <footer class="py-5 bg-purpel">
       <div class="container">
@@ -74,7 +105,7 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mb-4">
-            <img src="images/info-envio-satisfaction.png" alt="100% satisfacion" width="20%" style="margin: 5%">
+            <img src="/image/info-envio-satisfaction.png" alt="100% satisfacion" width="20%" style="margin: 5%">
             <br>
             <h5>CAMBIOS Y DEVOLUCIONES SIN PROBLEMAS</h5>
 
@@ -82,7 +113,7 @@
 
           </div>
           <div class="col-lg-4 col-md-6 mb-4">
-            <img src="images/info-envio_time.png" alt="48h" width="20%" style="margin: 5%">
+            <img src="/image/info-envio_time.png" alt="48h" width="20%" style="margin: 5%">
             <br>
             <h5>TU PEDIDO EN TU CASA EN 48H</h5>
 

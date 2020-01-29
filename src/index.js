@@ -45,12 +45,6 @@ app.set('view engine','.hbs');
 	Middlewares
 	capa intermedia entre node y sistema
 */
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 
 //con el modulo session manejamos los datos de la sesion
 //con esto configuramos los datos de sesion y los guardamos en database
@@ -61,6 +55,16 @@ app.use(session({  //iniciamos sesion para poder usar flash
 	store: new MySQLStore(database)  // Guardamos la info en la database
 }));
 
+app.use(flash());
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 /*
 	Variables grobales
@@ -70,7 +74,7 @@ app.use((req,res,next) => {
 	//app.locals.succes accede al mendaje de la clase succes que definimos en links.js
 	app.locals.success = req.flash('success');
 	app.locals.message = req.flash('message');
-	//app.locals.user = req.user;
+	app.locals.user = req.user;
 	next();
 });
 
@@ -78,11 +82,14 @@ app.use((req,res,next) => {
 	Rutas
 */
 app.use(require('./rutas/index.js'));
-app.use(require('./rutas/perfil.js'));
 app.use(require('./rutas/usuario.js'));
 
 // cuando la ruta empieza por /links, llama otro fichero.
 app.use('/links',require('./rutas/links.js')); 
+
+//Cuando el usuario accede al web, aparece perfil personal -- /perfil
+app.use('/perfil',require('./rutas/perfil.js'));
+
 
 /*
 	Archivos publicos
