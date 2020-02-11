@@ -4,6 +4,7 @@
 // RAIZ  --> / , SE REFIERE AL PAGINA PERSONAL DE CLIENTE O DE ADMINISTRADOR
 
 const express = require('express');
+var moment = require('moment');
 const router = express.Router(); 
 
 const db = require('../db');
@@ -173,9 +174,15 @@ router.post('/changepass/:id',isLoggedIn,passport.authenticate('local.change', {
 //PAGINA MIS PEDIDOS
 router.get('/mispedidos',isLoggedIn,async(req,res) => {
 
-	const pedidos = await db.query('SELECT ')
+	
 	res.render('links/mispedidos');
 });
+router.post('/mispedidos/id',isLoggedIn,async(req,res) => {
+
+	
+	res.redirect('/perfil/mispedidos');
+});
+
 
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -299,6 +306,52 @@ router.get('/gestion',isLoggedIn,async(req,res) => {
 
 	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
 	res.render('links/gestion-producto');
+});
+
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+//PAGINA PROMOCIONES
+router.get('/promocion',isLoggedIn,async(req,res) => {
+
+	const promo = await db.query('SELECT * FROM tpromociones ORDER BY f_inicio DESC');
+	console.log(promo[0].F_inicio);
+	for(promocion in promo) {
+		promocion.F_inicio = moment(promocion.F_inicio).format('YYYY-MM-D');
+		console.log(promocion.F_inicio);
+	}
+	//console.log(promo);
+	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
+	res.render('links/promocion',{ promo });
+});
+
+//Anadir promo
+router.get('/promocion/p-add',isLoggedIn,async(req,res) => {
+ 
+	res.render('partials/promo-add');
+});
+router.post('/promocion/p-add',isLoggedIn,async(req,res) => {
+ 
+	res.redirect('/perfil/promocion');
+});
+
+//Editar promo
+router.get('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
+
+	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
+	res.render('links/promocion');
+});
+router.post('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
+
+	 
+	res.redirect('/perfil/promocion');
+});
+
+//Eliminar promo
+router.get('/promocion/p-elimir/:id',isLoggedIn,async(req,res) => {
+
+	await db.query('DELETE FROM tpromociones WHERE ID = ?',[req.params.id]);
+	res.redirect('/perfil/promocion');
 });
 
 
