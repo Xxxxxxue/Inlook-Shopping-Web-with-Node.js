@@ -25,6 +25,7 @@ passport.use('local.registro', new LocalStrategy({
 	let newUser = {  //crea nuevo usuario
 		usuario,
 		clave,
+		esadmin: 0,
 		IdClientes: cl.insertId
 	};
 
@@ -33,9 +34,9 @@ passport.use('local.registro', new LocalStrategy({
 	newUser.clave = await helpers.encryptPassword(clave);
 	//Guardamos eb database
 	const result = await db.query('INSERT INTO tusuario SET ?', newUser);
-	newUser.id = result.insertId; //anadir un id al new user
-	return done(null,newUser); //
 
+	newUser.ID = result.insertId; //anadir un id al new user
+	return done(null, newUser);
 }));
 
 
@@ -46,18 +47,21 @@ passport.use('local.change', new LocalStrategy({
 	passwordField: 'clave',  // recibir password desde el formulario
 	passReqToCallback: true   // 
 }, async (req,usuario,clave,done) => {
-	
+
 	let newUser = {  
 		usuario,
-		clave
+		clave,
+		esadmin: 0,
+		ID: req.params.id
 	};
-
-	console.log(req.session);
+	//console.log(newUser.ID);
+	//console.log(req.params);
 	//ciframos la contrasena mediante helpers.js
 	newUser.clave = await helpers.encryptPassword(clave);
 	//cambiar
-	await db.query('UPDATE tusuario SET clave=? WHERE id=?', [newUser.clave,req.session.ID]);
+	await db.query('UPDATE tusuario SET clave=? WHERE id=?', [newUser.clave,newUser.ID]);
 	
+	req.logout();
 	return done(null,newUser); 
 
 }));
@@ -93,7 +97,7 @@ passport.use('local.login', new LocalStrategy({
 
 //Un fallo en que no te deja serializarse por login
 passport.serializeUser((user,done) => {
-	console.log(user);
+	
 	done(null,user.ID);
 });
 

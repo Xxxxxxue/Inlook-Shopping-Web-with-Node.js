@@ -1,0 +1,80 @@
+<div tabindex="-1" class="modal fade show" id="Modal-e" role="dialog" aria-labelledby="myModalLabel" style="padding-right: 16px; display: block;" aria-modal="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" role="tab" href="/perfil/datapers/dir-edit/{{dir.ID}}" data-toggle="tab"><i class="fas fa-user mr-1" aria-hidden="true"></i>
+            Editar Dirección</a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade in show active" role="tabpanel">
+
+          	<div class="modal-body">
+          		<form action="/perfil/datapers/dir-edit/{{dir.ID}}" method="post">
+
+          				<br>
+          				<input type="text" class="form-control" id="f1" name="Direccion" value="{{dir.Direccion}}">
+          				<label for="f1">Dirección</label>
+          				<input type="text" class="form-control" id="f2" name="Localidad" value="{{dir.Localidad}}">
+          				<label for="f2">Localidad</label>
+          				<input type="num" class="form-control" id="f3" name="CPostal" value="{{dir.CPostal}}">
+          				<label for="f3">Codigo Postal</label>
+          				<input type="text" class="form-control" id="f4" name="Provincia" value="{{dir.Provincia}}">
+          				<label for="f4">Provincia</label>	
+          				<input type="text" class="form-control" id="f5" name="Pais" value="{{dir.Pais}}">
+          				<label for="f5">País</label>
+          				<br>
+          				Tipos:
+                  {{#if dir.entrega}}
+          				<div class="form-check">
+          					<input class="form-check-input" type="checkbox" name="entrega" id="exampleRadios1" value="1" checked>
+          					<label class="form-check-label" for="exampleRadios1">Dirección de entrega</label>
+          				</div>
+                  {{else}}
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="entrega" id="exampleRadios1" value="1">
+                    <label class="form-check-label" for="exampleRadios1">Dirección de entrega</label>
+                  </div>
+                  {{/if}}
+                  {{#if dir.factura}}
+          				<div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="factura" id="exampleRadios2" value="1" checked>
+                    <label class="form-check-label" for="exampleRadios2">Dirección de Facturación</label>
+                  </div>
+                  {{else}}
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="factura" id="exampleRadios2" value="1">
+                    <label class="form-check-label" for="exampleRadios2">Dirección de Facturación</label>
+                  </div>
+                  {{/if}}
+
+                  <div class="text-center">
+                    <button class="btn btn-success">Guardar</button>
+                  </div>
+                  
+          		</form>
+          	</div>
+          	<div class="modal-footer">
+          		
+          		<a href="/perfil/datapers"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-window-close"></i></button></a>
+          	</div>
+
+        
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+

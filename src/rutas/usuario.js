@@ -7,16 +7,17 @@ const { isNotLoggedIn } = require('../lib/acceso');
 
 //	pantalla de registro
 //	No quiero que se vea si ya esta logeado, por lo que utilizo el segndo param.
-router.get('/registro', isNotLoggedIn, (req, res) => {
+router.get('/registro', (req, res) => {
 
     res.render('layouts/registro');
 });
 //	ruta para gestionar los datos de registro devueltos por el formulario en '/registro' (get)
-router.post('/registro', isNotLoggedIn, passport.authenticate('local.registro', {
+router.post('/registro', passport.authenticate('local.registro', {
   	successRedirect: '/perfil',
   	failureRedirect: '/registro',
   	failureFlash: true
-}));
+}), (req,res) => {
+});
 
 
 //	pantalla de login
@@ -33,10 +34,11 @@ router.post('/login', (req, res, next) => {
 		console.log(key+' -- '+req.body[key]);
 	}*/
 	passport.authenticate('local.login', {
-	  	successRedirect: '/perfil',
+	  	successRedirect: '/perfil', // Voy perfil -- object--req
 	  	failureRedirect: '/login',
 	  	failureFlash: true
 	})(req,res,next);
+
 });
 
 

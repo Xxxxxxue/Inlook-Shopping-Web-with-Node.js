@@ -6,7 +6,10 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser'); 
 const flash = require('connect-flash');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
 const MySQLStore = require('express-mysql-session')(session);
+var moment = require('moment');
+
 
 const { database } = require('./keys');
 
@@ -18,6 +21,7 @@ const passport = require('passport'); // para antidentificar usuario
 */
 const app = express();  //mira documentacion express
 require('./lib/passport');
+app.use(fileUpload());
 
 /*
 	Configuraciones
@@ -56,12 +60,13 @@ app.use(session({  //iniciamos sesion para poder usar flash
 }));
 
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 
@@ -96,6 +101,7 @@ app.use('/perfil',require('./rutas/perfil.js'));
 */
 //该行代码是在express添加中间件，设置静态资源路径为public，所有的HTML、CSS、JS等文件都放在public下即可
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 /*

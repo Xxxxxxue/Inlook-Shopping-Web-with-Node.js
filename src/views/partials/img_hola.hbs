@@ -1,11 +1,24 @@
 <div class="col-lg-3">
 
-  <h1 class="my-4">Tu personalizador mas divertido</h1>
-  <h2><b>Diseña tu propia ropa</b></h2>
+  
+  {{#unless user}}
+    <h1 class="my-4">Tu personalizador mas divertido</h1>
+    <h2><b>Diseña tu propia ropa</b></h2>
 
-  <p>La ropa es como un lienzo para mostrar tu personalidad. Con la impresión textil personalizada de <strong>IN LOOK puedes diseñar fácilmente tus propias camisetas o sudaderas</strong>: ¡haz realidad tus propias ideas, crea diseños y enorgullécete de tu propio diseño ! Te invitamos a utilizar tus propias fotos con la ayuda de nuestra herramienta de diseño. Dispones de un sinfín de fuentes y plantillas de diseño.</p>
+    <p>La ropa es como un lienzo para mostrar tu personalidad. Con la impresión textil personalizada de <strong>IN LOOK puedes diseñar fácilmente tus propias camisetas o sudaderas</strong>: ¡haz realidad tus propias ideas, crea diseños y enorgullécete de tu propio diseño ! Te invitamos a utilizar tus propias fotos con la ayuda de nuestra herramienta de diseño. Dispones de un sinfín de fuentes y plantillas de diseño.</p>
+    
+  
+  {{else}}
+    <h1></h1>  <!--Nombre de Usuario-->
+    <h2><b>Diseña tu propia ropa</b></h2>
+    <p class="my-4">En nombre de IN LOOK, les damos la bienvenida a nuestra página web, en la que esperamos, encontrarán todos los productos que necesiten, los cuáles se pueden personalizar como deseéis.</p>
+  
+  {{/unless}}
+
+  
+
+  <!--IMAGE E AYUDA SIEMPRE ESTA EN LA PANTALLA-->
   <p><img id="ia" style="width: 100%" alt="Imagen aleatoria" src="/image/3.png"></p>
-
   <div id="accordion">
     <div class="card">
       <div class="card-header" id="headingTwo">

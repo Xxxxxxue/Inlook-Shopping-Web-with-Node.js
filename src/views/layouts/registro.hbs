@@ -9,7 +9,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" role="tab" href="/login" data-toggle="tab"><i class="fas fa-user mr-1" aria-hidden="true"></i>
+            <a class="nav-link active" role="tab" href="/registro" data-toggle="tab"><i class="fas fa-user mr-1" aria-hidden="true"></i>
             REGISTRAR</a>
           </li>
         </ul>
@@ -23,45 +23,44 @@
             <!--Body REGISTRO-->
             <div class="modal-body">
               <form action="/registro" method="POST">
-                <div class="md-form form-sm mb-5">
+                <div class="md-form form-sm">
                   <i class="fas fa-user-alt" aria-hidden="true"></i>
                   <input class="form-control form-control-sm validate" type="text" name="nombre">
-                  <label for="modalLRInput12" data-success="right" data-error="wrong">Tu Nombre</label>
+                  <label>Tu Nombre</label>
                 </div>
-                <div class="md-form form-sm mb-5">
+                <div class="md-form form-sm">
                   <i class="fas fa-user-alt" aria-hidden="true"></i>
                   <input class="form-control form-control-sm validate" type="text" name="apellidos">
-                  <label for="modalLRInput12" data-success="right" data-error="wrong">Tu Apellido</label>
+                  <label>Tu Apellido</label>
                 </div>
-                <div class="md-form form-sm mb-5">
+                <div class="md-form form-sm">
                   <i class="fas fa-envelope prefix" aria-hidden="true"></i>
                   <input class="form-control form-control-sm validate" type="email" name="usuario">
-                  <label for="modalLRInput12" data-success="right" data-error="wrong">Tu correo</label>
+                  <label>Tu correo</label>
                 </div>
 
-                <div class="md-form form-sm mb-5">
+                <div class="md-form form-sm">
                   <i class="fas fa-lock prefix" aria-hidden="true"></i>
                   <input class="form-control form-control-sm validate" type="password" name="clave">
-                  <label for="modalLRInput13" data-success="right" data-error="wrong">Tu contraseña</label>
+                  <label>Tu contraseña</label>
                 </div>
 
-                <div class="md-form form-sm mb-4">
+                <div class="md-form form-sm">
                   <i class="fas fa-lock prefix" aria-hidden="true"></i>
                   <input class="form-control form-control-sm validate" type="password" name="clave1">
-                  <label for="modalLRInput14" data-success="right" data-error="wrong">Repite la contraseña</label>
+                  <label>Repite la contraseña</label>
                 </div>
 
                 <div class="text-center form-sm mt-2">
                   <button class="btn-success">Unirse <i class="fas fa-sign-in ml-1" aria-hidden="true"></i></button>
                 </div>    
               </form>
-            </div>
-           
-            
+            </div> 
 
             <!--Footer-->
             <div class="modal-footer">
-              <button class="btn btn-success " type="button" data-dismiss="modal"><i class="fas fa-window-close" aria-hidden="true"></i></button>
+              <a href="/login"><button class="btn btn-success">Volver</button></a>
+              <a href="/"><button class="btn btn-success" data-dismiss="modal"><i class="fas fa-window-close" aria-hidden="true"></i></button></a>
             </div>
           </div>
           <!--/.Panel 8-->

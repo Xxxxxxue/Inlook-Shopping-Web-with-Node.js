@@ -4,6 +4,63 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
 @import url('https://fonts.googleapis.com/css?family=Teko&display=swap');
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 100%;
+}
+/*estilos de subir imagen*/
+
+
+.pagination{
+	width: 100%
+	margin: auto;
+
+}
+.page-link a{
+		background-color:#67B32E;
+	color:#53266D; 
+}
+
+.page-item a{
+	background-color:#67B32E;
+	color:#53266D; 
+	border: solid 3px #53266D;
+
+}
+.page-item.active .page-link {
+		background-color:#53266D;
+	color:#67B32E; 
+	border: solid 3px #67B32E;
+}
+.page-item a:hover {
+		background-color:#53266D;
+	color:#67B32E; 
+	border: solid 3px #67B32E;
+}
+.page-item{
+	background-color:#67B32E;
+}
+/*______pagination*/
 	
 body {
 	width: 100%;
@@ -113,20 +170,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', e
 	background: #53266D;
 	color: #67B32E;
 }
-.card-title{
+/*.card-title{
 		background: #67B32E;
-}
+}*/
 .card-title a{
 	margin: 0 30% 0 30%;
 	text-align: center;
 	color: #53266D;
 }
-.card-foote{
+.card-footer{
 	background: #67B32E;
 	color: #53266D;
 }
 .carousel-control-prev-icon{
-	background-image: url("../images/SVG/prev.svg");
+	background-image: url("/image/SVG/prev.svg");
 	background-repeat: no-repeat;
     background-size: cover;
 	width: 10px;
@@ -141,7 +198,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', e
 	
 }
 .carousel-control-next-icon{
-	background-image: url("../images/SVG/nex.svg");
+	background-image: url("/image/SVG/nex.svg");
 	background-repeat: no-repeat;
     background-size: cover;
 	width: 10px;
