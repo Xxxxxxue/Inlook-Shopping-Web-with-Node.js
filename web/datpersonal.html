@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>In Look - Datos personales</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+	 <!-- iconos -->
+	<script src="https://kit.fontawesome.com/6c610a6e67.js" crossorigin="anonymous"></script>
+<script>
+	function rand(n){
+// creamos un numero al azar entre 1 y 10 (o cual sea la cantidad de imágenes)
+ return(Math.floor(Math.random() * n + 1 ));
+}
+//guardas imagenes en el array
+var cambia_imagen = new Array();
+cambia_imagen[0] = "images/2.png";
+cambia_imagen[1] = "images/1.png";
+cambia_imagen[2] = "images/2.png";
+cambia_imagen[3] = "images/3.png";
+cambia_imagen[4] = "images/4.png";
+cambia_imagen[5] = "images/4.png";
+cambia_imagen[6] = "images/3.png";
+cambia_imagen[7] = "images/2.png";
+cambia_imagen[8] = "images/1.png";
+cambia_imagen[9] = "images/4.png";
+
+
+
+//la función para que al clickear establezca el source del tag imagem que tiene id "ia" (Imagen aleatoria)
+//como no son tantas, puede que alguna vez se repita 2 veces la misma
+//incluso, si usamos numeros para las imágenes, la script puede ser más sencilla
+
+
+function cambiar(){
+     document.getElementById("ia").src = cambia_imagen[rand(10)-1];
+	setTimeout("cambiar()",1000)
+}
+	  
+</script>
+</head>
+
+<body onload="cambiar()">
+
+  <!-- Navigation -->
+<nav class="navegacion">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-Purple fixed-top">
+    <div class="container">
+      <img class="logo" src="images/SVG/logo.svg" width="50%">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fas fa-home"></i>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">¿Quienes somos?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">¿Necesitas ayuda?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">¿Alguna duda?</a>
+          </li>
+        </ul>
+		  
+<div class="log">
+		<button type="submit" class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus"></i></button>
+        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#cerrar"><b> <i class="fas fa-user"></i><br>Cerrar sesión</b></button>
+</div>
+      </div>
+    </div>
+
+  </nav>
+</nav>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">¡¡¡Hola!!!</h1>
+		  <div class="nobreusuario"><h2><b>Carlos Ponce de león</b></h2></div>
+		  <p>Estas en tu pagina personal como <b>usuario registrado de IN LOOK </b>
+		<br> Gracias por estar registrado .</p>
+        <p><img id="ia" alt="Imagen aleatoria" src="images/1.png" style="width: 100%" /></p>
+		<div id="accordion">
+<div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-success" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Ayuda
+			<i class="fas fa-question"></i>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        Es muy fácil, yo te ayudo.<br>
+ 		Puedes gestionar tus datos personales y las direciones de envio y facturacion.
+		  <br>
+		  <img class="imagenayuda" src="images/ayuda/ayuda-producto.png" width="50%" alt="ayuda">
+      </div>
+    </div>
+  </div>
+	    </div>
+      </div>
+      <!-- /.col-lg-3 -->
+	
+	   <div class="col-lg-9">
+		<div class="form-body">
+		<div class="card-body">	
+		<h4>Datos de Personles</h4>
+			<div class="md-form form-sm mb-5">
+                <i class="fas fa-user-alt"></i>
+                <input type="text" id="modalLRInput12" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput12">Tu Nombre</label>
+          </div>
+		  <div class="md-form form-sm mb-5">
+                <i class="fas fa-user-alt"></i>
+                <input type="text" id="modalLRInput12" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput12">Tu Apellido</label>
+          </div>
+		  </div>
+		  <div class="row">
+    <div class="col">
+      <h4>Direcion de envio</h4>
+			  <div class="md-form form-sm mb-4">
+				<input type="tex" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Calle</label>
+			    <input type="number" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Numero</label>
+				<input type="number" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Piso</label>
+				<input type="tex" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Puerta</label>
+            </div>
+    </div>
+    <div class="col">
+     <h4>Direcion de Facturacion</h4>
+			  <div class="md-form form-sm mb-4">
+				<input type="tex" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Calle</label>
+			    <input type="number" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Numero</label>
+				<input type="number" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Piso</label>
+				<input type="tex" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Puerta</label>
+            </div>
+    </div>
+  </div>
+<div class="text-center form-sm mt-2">
+          <button class="btn-success">Guardar <i class="fas fa-sign-in ml-1"></i></button>
+		  </div>
+         </div>
+	  </div>
+        </div>
+           <!-- /.row -->
+
+    </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-purpel">
+    <div class="container">
+	  <div class="row">
+
+          <div class="col-lg-4 col-md-6 mb-4">
+		<p></p>
+      <p class="m-0 text-center text-white">In Look &copy; 2019</p>
+			  <p>La ropa es como un lienzo para mostrar tu personalidad. Con la impresión textil personalizada de <b>IN LOOK puedes diseñar fácilmente tus propias camisetas o sudaderas</b>: ¡haz realidad tus propias ideas, crea diseños y enorgullécete de tu propio diseño ! Te invitamos a utilizar tus propias fotos con la ayuda de nuestra herramienta de diseño. Dispones de un sinfín de fuentes y plantillas de diseño.</p>
+			  <br>
+			  <div class="row">
+			  <div class="col">
+			  <a href=""><i class="fab fa-twitter-square fa-3x"></i></a>
+			  </div>
+				<div class="col">
+				<a href=""><i class="fab fa-facebook-square fa-3x"></i></a>
+				</div>
+				<div class="col">
+				<a href=""><i class="fab fa-instagram fa-3x"></i></a>
+				</div>
+			  </div>
+			 </div>
+		<div class="col-lg-4 col-md-6 mb-4">
+			<img src="images/info-envio-satisfaction.png" alt="100% satisfacion" width="20%" style="margin: 5%">
+			<br>
+			<h5>CAMBIOS Y DEVOLUCIONES SIN PROBLEMAS</h5>
+
+30 días para efectuar cambios gratuitos o una devolución. ¡Sin preguntas! 
+			
+	    </div>
+	    <div class="col-lg-4 col-md-6 mb-4">
+		  <img src="images/info-envio_time.png" alt="48h" width="20%" style="margin: 5%" >
+			<br>
+			<h5>TU PEDIDO EN TU CASA EN 48H</h5>
+
+Recíbelo en tan solo 48h con nuestro modo "prioritario" (solo península)
+			
+			 </div>
+</div>
+    </div>
+    <!-- /.container -->
+  </footer>
+<!--Modal: Asceso / Registro Form-->
+<div class="modal fade" id="asceso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+              Tengo cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+              No tengo cuenta</a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <!--Panel 7-->
+          <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body mb-1">
+              <div class="md-form form-sm mb-5">
+                <i class="fas fa-envelope prefix"></i>
+                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput10">Tu correo</label>
+              </div>
+
+              <div class="md-form form-sm mb-4">
+                <i class="fas fa-lock prefix"></i>
+                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput11">Tu contraseña</label>
+              </div>
+              <div class="text-center mt-2">
+                <button class="btn-success">Entrar <i class="fas fa-sign-in ml-1"></i></button>
+              </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+              <div class="options text-center text-md-right mt-1">
+                <p>
+¿No es un miembro?<a href="#" class="alert-heading">Regístrate</a></p>
+                <p>
+<a href="#" class="blue-text">¿Se te olvidó tu contraseña?</a></p>
+              </div>
+              <button type="button" class="btn btn-success " data-dismiss="modal"><i class="fas fa-window-close"></i></button>
+            </div>
+
+          </div>
+          <!--/.Panel 7-->
+
+          <!--Panel 8-->
+          <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body">
+				<div class="md-form form-sm mb-5">
+                <i class="fas fa-envelope prefix"></i>
+                <input type="text" id="modalLRInput12" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput12">Tu Nombre</label>
+              </div>
+			<div class="md-form form-sm mb-5">
+                <i class="fas fa-envelope prefix"></i>
+                <input type="text" id="modalLRInput12" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput12">Tu Apellido</label>
+              </div>
+              <div class="md-form form-sm mb-5">
+                <i class="fas fa-envelope prefix"></i>
+                <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput12">Tu correo</label>
+              </div>
+
+              <div class="md-form form-sm mb-5">
+                <i class="fas fa-lock prefix"></i>
+                <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput13">Tu contraseña</label>
+              </div>
+
+              <div class="md-form form-sm mb-4">
+                <i class="fas fa-lock prefix"></i>
+                <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" for="modalLRInput14">Repite la contraseña</label>
+              </div>
+
+              <div class="text-center form-sm mt-2">
+                <button class="btn-success">Unirse <i class="fas fa-sign-in ml-1"></i></button>
+              </div>
+
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success " data-dismiss="modal"><i class="fas fa-window-close"></i></button>
+            </div>
+          </div>
+          <!--/.Panel 8-->
+        </div>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+</div>
+<!--Modal: Login / Register Form-->
+<script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

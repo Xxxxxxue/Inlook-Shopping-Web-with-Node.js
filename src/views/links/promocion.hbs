@@ -1,0 +1,37 @@
+<div class="col-lg-9">
+	<div class="text-right">
+		<a href="/perfil/promocion/p-add"><button class="btn-success"  data-toggle="modal" data-target="#promoadd"><i class="fas fa-upload"></i></button></a>
+	    <a href="/perfil"><button class="btn-success">Volver</button></a>
+	</div>
+	<div style="background: #532665;">
+	<h4>Promociones</h4>
+	<br>
+		<!--tabla/lista de productos-->
+		<div class="row">
+			{{#each promo}}
+	        <div class="col-md-6" >
+	            <div class="card text-center" >
+	                <div class="card-body">
+	                    <img class="card-img-top" src="{{imagen}}" style="height: 250px;border: 1px solid;"><br><br>
+	                    <h4 class="card-title">{{Nombre}}</h4>
+	                    <h5>Codigo de promoción: {{CodigoPromo}}</h5>
+                		<p class="card-text">{{Descripcion}}</p>
+	                    <p class="card-text">Fecha inicio: {{F_inicio}}</p>
+	                    <p class="card-text">Fecha fin: {{F_fin}}</p> 
+	                    <a href="/perfil/promocion/p-edit/{{ID}}"><button class="btn btn-success" data-toggle="modal" data-target="#promoedit">Editar</button></a>
+	                    <a href="/perfil/promocion/p-elimir/{{ID}}"><button class="btn btn-success">Eliminar</button></a>
+	                   
+	                </div>
+	            </div>
+	        </div>
+	       
+	       {{else}} 
+	        <div class="col text-center">
+	            <p>No hay promociones guardados.</p>        
+	        </div>
+	        {{/each}}
+
+		</div>
+			
+	</div>
+</div>
