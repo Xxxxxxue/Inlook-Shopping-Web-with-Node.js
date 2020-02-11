@@ -39,6 +39,20 @@ $(document).ready( function() {
 	    readURL(this);
 	}); 
 
+	/*function elim(id,tipo) {
+		if(tipo == 'diseno') {
+			var op = confirm('¿Desea eliminar este diseño?');
+	      	if(op == true) 
+	       	location.href = '/perfil/misdisenos/s-elimir/'+ id; 
+		}
+	    if(tipo == 'dir') {
+	    	var op = confirm('¿Desea eliminar esta dirección?');
+      		if(op == true) 
+       		location.href = '/perfil/datapers/dir-elimir/'+ id;
+	      
+	    }
+	}*/
+
 });
 
 //guardas imagenes en el array

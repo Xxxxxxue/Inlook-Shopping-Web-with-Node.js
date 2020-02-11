@@ -15,7 +15,7 @@
 	                    <img class="card-img-top" src="{{imagen}}" style="height: 250px;border: 1px solid;">
 	                    <h4 class="card-title">{{Nombre}}</h4>
 	                     
-	                    <button class="btn btn-danger" onclick="elim({{ID}})">Eliminar</button>
+	                    <a href="/perfil/misdisenos/s-elimir/{{ID}}"><button class="btn btn-danger">Eliminar</button></a>
 	                    <a href="/perfil/misdisenos/s-edit/{{ID}}"><button class="btn btn-primary" data-toggle="modal" data-target="#disenoedit">Editar</button></a>
 	                </div>
 	            </div>
@@ -32,21 +32,3 @@
 	</div>
 </div>
 
-
-<!--------------------------------------------------------------------------------------------------------------->
-
-<script>
-   $(document).ready(function(){
-
-    //funcion ventana de confirmacion para eliminar direccion
-    function elim(id) {
-      var op = confirm('¿Desea eliminar este diseño?');
-      if(op == true) 
-       location.href = '/perfil/misdisenos/s-elimir/'+ id;  // redireccionar alla
-      //window.open ---> // abre la pagina nueva html
-      
-    }
-
-  });
-
-</script>

@@ -215,6 +215,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', e
 	background-color: rgba(0,0,0,0.7);
 }
 .modal-content{
+	overflow: auto;
 /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#53266d+0,431c51+53&0.62+1,0.62+100 */
 background: -moz-radial-gradient(center, ellipse cover, rgba(83,38,109,0.62) 0%, rgba(83,38,108,0.62) 1%, rgba(67,28,81,0.62) 53%, rgba(67,28,81,0.62) 100%); /* FF3.6-15 */
 background: -webkit-radial-gradient(center, ellipse cover, rgba(83,38,109,0.62) 0%,rgba(83,38,108,0.62) 1%,rgba(67,28,81,0.62) 53%,rgba(67,28,81,0.62) 100%); /* Chrome10-25,Safari5.1-6 */

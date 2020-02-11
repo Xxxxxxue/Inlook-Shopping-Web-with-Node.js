@@ -49,7 +49,8 @@ app.set('view engine','.hbs');
 	Middlewares
 	capa intermedia entre node y sistema
 */
-
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 //con el modulo session manejamos los datos de la sesion
 //con esto configuramos los datos de sesion y los guardamos en database
 app.use(session({  //iniciamos sesion para poder usar flash
@@ -63,12 +64,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-
-
-
-
 
 
 /*
@@ -90,7 +85,7 @@ app.use(require('./rutas/index.js'));
 app.use(require('./rutas/usuario.js'));
 
 // cuando la ruta empieza por /links, llama otro fichero.
-app.use('/links',require('./rutas/links.js')); 
+//app.use('/links',require('./rutas/links.js')); 
 
 //Cuando el usuario accede al web, aparece perfil personal -- /perfil
 app.use('/perfil',require('./rutas/perfil.js'));

@@ -23,7 +23,7 @@ router.post('/registro', passport.authenticate('local.registro', {
 //	pantalla de login
 router.get('/login',isNotLoggedIn, (req, res) => {
 	
-	console.log('en login');
+	//console.log('en login');
     res.render('layouts/login');
 });
 //	ruta para gestionar los datos de login devueltos por el formulario en '/login' (get)

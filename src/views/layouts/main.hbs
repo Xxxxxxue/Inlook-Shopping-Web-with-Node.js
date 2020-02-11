@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="/css/shop-homepage.css">
 
     <!-- ICONOS -->
-    <script src="https://kit.fontawesome.com/6c610a6e67.js" crossorigin="anonymous"></script>
+   <script src="https://kit.fontawesome.com/5c5764d633.js" crossorigin="anonymous"></script>
 
     <script>
       $(document).ready(function(){
 
-        mandaAjax('POST','/1','','listadeproductos','');
+        //mandaAjax('POST','/1','','listadeproductos');
+        
         
 
       });
@@ -55,11 +56,20 @@
                 <a class="nav-link" href="#">¿Alguna duda?</a>
               </li>
             </ul>
-
+           
             <div class="log">
-              <a href=""><button class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button></a>
-              <a href="/login"><button class="btn btn-success" data-toggle="modal" data-target="#acceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button></a>
-              
+              <a href="">
+                <button class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
+              </a>
+              {{#unless user}}
+              <a href="/login">
+                <button class="btn btn-success" data-toggle="modal" data-target="#acceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button>
+              </a>
+              {{else}}
+              <a href="/salir">
+                <button class="btn btn-success"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Cerrar sesión</b></button>
+              </a>
+              {{/unless}}
             </div>
           </div>
         </div>

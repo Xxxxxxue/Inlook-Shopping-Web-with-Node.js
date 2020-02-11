@@ -199,10 +199,12 @@ router.post('/misdisenos/s-add',isLoggedIn,async(req,res) => {
 	
 	const { Nombre } = req.body;
 	if (req.user.esadmin) {
-		var Ambito = req.body;
+		var Ambito = req.body.Ambito;
 	}
 	else
 		var Ambito = 1;
+
+	
 
 	//console.log(req.files);
 	if(!req.files || Object.keys(req.files).length === 0){
@@ -241,6 +243,8 @@ router.get('/misdisenos/s-edit/:id',isLoggedIn,async(req,res) => {
 		diseno[0].public = 'checked';
 	if(diseno[0].Ambito == 1)
 		diseno[0].privad = 'checked';
+
+	console.log(diseno);
 	
 	res.render('partials/diseno-edit',{diseno:diseno[0],'adm': req.user.esadmin});
 });
@@ -248,9 +252,10 @@ router.post('/misdisenos/s-edit/:id',isLoggedIn,async(req,res) => {
 
 	const { Nombre } = req.body;
 	if (req.user.esadmin) {
-		var Ambito = req.body;
+		var Ambito = req.body.Ambito;
 	}
-
+	else
+		var Ambito = 1;
 	var imagen;
 		
 	if(!req.files || Object.keys(req.files).length === 0){
