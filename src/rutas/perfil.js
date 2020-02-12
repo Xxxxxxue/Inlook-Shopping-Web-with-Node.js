@@ -308,6 +308,36 @@ router.get('/gestion',isLoggedIn,async(req,res) => {
 	res.render('links/gestion-producto');
 });
 
+//Anadir producto
+router.get('/gestion/g-add',isLoggedIn,async(req,res) => {
+ 
+	res.render('partials/gestion-add');
+});
+router.post('/gestion/g-add',isLoggedIn,async(req,res) => {
+ 
+	res.redirect('/perfil/gestion');
+});
+
+//Editar producto
+router.get('/gestion/g-edit/:id',isLoggedIn,async(req,res) => {
+
+	
+	res.render('partials/gestion-edit');
+});
+router.post('/gestion/g-edit/:id',isLoggedIn,async(req,res) => {
+
+	 
+	res.redirect('/perfil/gestion');
+});
+
+//Eliminar producto
+router.get('/gestion/g-elimir/:id',isLoggedIn,async(req,res) => {
+
+	await db.query('DELETE FROM tproductos WHERE ID = ?',[req.params.id]);
+	await db.query('DELETE FROM tgalerias WHERE IdProducto = ?',[req.params.id]);
+	await db.query('DELETE FROM tproductocategoria WHERE IdProducto = ?',[req.params.id]);
+	res.redirect('/perfil/gestion');
+});
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -315,10 +345,10 @@ router.get('/gestion',isLoggedIn,async(req,res) => {
 router.get('/promocion',isLoggedIn,async(req,res) => {
 
 	const promo = await db.query('SELECT * FROM tpromociones ORDER BY f_inicio DESC');
-	console.log(promo[0].F_inicio);
-	for(promocion in promo) {
-		promocion.F_inicio = moment(promocion.F_inicio).format('YYYY-MM-D');
-		console.log(promocion.F_inicio);
+
+	for(var i=0; i<promo.length; i++) {
+		promo[i].F_inicio = promo[i].F_inicio.toDateString();
+		promo[i].F_fin = promo[i].F_fin.toDateString();
 	}
 	//console.log(promo);
 	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
@@ -332,18 +362,104 @@ router.get('/promocion/p-add',isLoggedIn,async(req,res) => {
 });
 router.post('/promocion/p-add',isLoggedIn,async(req,res) => {
  
+ 	const { Nombre,Descripcion,CodigoPromo,Porcentaje,F_inicio,F_fin,Envio } = req.body;
+
+ 	//console.log(req.files);
+	if(!req.files || Object.keys(req.files).length === 0){
+		var imagen = 0;
+	}
+	else{
+		let sampleFile = req.files.imagen;
+		console.log(sampleFile.name);
+		var imagen = '/image/promociones/'+sampleFile.name;
+  		sampleFile.mv('src/public/image/promociones/'+sampleFile.name, function(err) {
+  		 	if (err)
+  				return res.status(500).send(err);
+	
+  		});
+	}
+
+ 	let newPromo = {
+ 		Nombre,
+ 		Descripcion,
+ 		CodigoPromo,
+ 		Porcentaje,
+ 		F_inicio,
+ 		F_fin,
+ 		Envio,
+ 		imagen
+ 	}
+
+ 	await db.query('INSERT INTO tpromociones SET ?',[newPromo]);
 	res.redirect('/perfil/promocion');
 });
 
 //Editar promo
 router.get('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
 
-	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
-	res.render('links/promocion');
+	const p = await db.query('SELECT * FROM tpromociones WHERE ID = ?',[req.params.id]);
+	var ini = p[0].F_inicio;
+	var fin = p[0].F_fin;
+
+	p[0].F_inicio = ini.getFullYear()+'-';
+	p[0].F_fin = fin.getFullYear()+'-';
+	
+	if(ini.getMonth() < 10 )
+		p[0].F_inicio += '0';
+	p[0].F_inicio += ini.getMonth()+'-';
+	if(ini.getDate() < 10 )
+		p[0].F_inicio += '0';
+	p[0].F_inicio += ini.getDate();
+
+	if(fin.getMonth() < 10 )
+		p[0].F_fin += '0';
+	p[0].F_fin += fin.getMonth()+'-';
+	if(fin.getDate() < 10 )
+		p[0].F_fin += '0';
+	p[0].F_fin += fin.getDate();
+	
+
+	
+	if(p[0].Envio == 0)
+		p[0].estandar = 'checked';
+	if(p[0].Envio== 1)
+		p[0].gratis = 'checked';
+
+	console.log(p[0]);
+
+	res.render('partials/promo-edit',{ p : p[0] });
 });
 router.post('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
 
-	 
+	const { Nombre,Descripcion,CodigoPromo,Porcentaje,F_inicio,F_fin,Envio } = req.body;
+
+ 	//console.log(req.files);
+	if(!req.files || Object.keys(req.files).length === 0){
+		var imagen = 0;
+	}
+	else{
+		let sampleFile = req.files.imagen;
+		console.log(sampleFile.name);
+		var imagen = '/image/promociones/'+sampleFile.name;
+  		sampleFile.mv('src/public/image/promociones/'+sampleFile.name, function(err) {
+  		 	if (err)
+  				return res.status(500).send(err);
+	
+  		});
+	}
+
+ 	let newPromo = {
+ 		Nombre,
+ 		Descripcion,
+ 		CodigoPromo,
+ 		Porcentaje,
+ 		F_inicio,
+ 		F_fin,
+ 		Envio,
+ 		imagen
+ 	}
+
+ 	await db.query('UPDATE tpromociones SET ? WHERE ID = ?',[newPromo,req.params.id]);
 	res.redirect('/perfil/promocion');
 });
 

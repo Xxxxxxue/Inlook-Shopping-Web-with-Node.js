@@ -29,7 +29,7 @@ router.get('/', async(req,res) => {
 	console.log(localTime);
 	const promo = await db.query('SELECT * FROM tpromociones WHERE F_fin >= CAST(? AS date)',[localTime]);
 	if(promo.length>1) {promo[0].s ='active';}
-	const  productos = await db.query('SELECT * FROM tproductos ORDER BY time DESC')
+	const  productos = await db.query('SELECT * FROM tproducto ORDER BY time DESC')
 	const np = 2; //numero de productos en un pag
 	const n = productos.length;
 	const npages = Math.ceil(n / np);
@@ -93,9 +93,9 @@ router.get('/salir', isLoggedIn, (req, res) => {
 	
 	res.send({productos,galeria,categoria,'pagina': req.params.page});
 	res.render('layouts/listado',{productos});
-});
+});*/
 
-router.get('/:tipo:page', async(req,res) => {
+/*router.get('/:tipo:page', async(req,res) => {
 	const productos = await db.query('SELECT * FROM tproducto WHERE tipo = ? ORDER BY time DESC',[req.params.tipo]);
 	//const tipo = await db.query('SELECT * FROM tproductocategoria WHERE 1 ');
 	const galeria = await db.query('SELECT * FROM tgaleria WHERE 1');

@@ -37,7 +37,10 @@ $(document).ready( function() {
 	}); 
 	$("#imgdiseno").change(function(){
 	    readURL(this);
-	}); 
+	});
+	$("#imgpromo").change(function(){
+	    readURL(this);
+	});  
 
 	/*function elim(id,tipo) {
 		if(tipo == 'diseno') {
