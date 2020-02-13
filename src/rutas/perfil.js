@@ -174,18 +174,48 @@ router.post('/changepass/:id',isLoggedIn,passport.authenticate('local.change', {
 //PAGINA MIS PEDIDOS
 router.get('/mispedidos',isLoggedIn,async(req,res) => {
 
-	
-	res.render('links/mispedidos',{'adm': req.user.esadmin});
+	var pedido = new Object();
+
+	if(req.user.esadmin){
+		pedido = await db.query('SELECT lc.ID,lc.PrecioUnitario,p.Nombre,d.imagen AS imgd,c.F_ultimo,e.estado'+
+										' FROM tlineacesta lc INNER JOIN tproducto p ON lc.Idproducto = p.ID'+
+										' INNER JOIN tdisenos d ON lc.IdDiseno = d.ID'+
+										' INNER JOIN tcesta c ON lc.IdCesta = c.ID'+
+										' INNER JOIN testados e ON c.IdEstados = e.ID'+
+										' WHERE c.IdUsuario != ? AND e.estado != "pendiente" ORDER BY F_ultimo DESC ',req.user.ID);
+	}
+
+	else{
+		pedido = await db.query('SELECT lc.ID,p.Nombre,d.imagen AS imgd,lc.PrecioUnitario,c.F_ultimo,e.estado'+
+										' FROM tlineacesta lc INNER JOIN tproducto p ON lc.Idproducto = p.ID'+
+										' INNER JOIN tdisenos d ON lc.IdDiseno = d.ID'+
+										' INNER JOIN tcesta c ON lc.IdCesta = c.ID'+
+										' INNER JOIN testados e ON c.IdEstados = e.ID'+
+										' WHERE c.IdUsuario = ? AND e.estado = "pedido" ORDER BY F_ultimo DESC',req.user.ID);
+	}
+
+	//console.log(pedido[0].estado);
+	res.render('links/mispedidos',{pedido});
 });
 
 //ver detalles y comprar otra vez si desea
 router.get('/mispedidos/detalle/:id',isLoggedIn,async(req,res) => {
 
-	
-	res.render('partials/ped-detalle',{detalle});
+	const detalle = await db.query('SELECT lc.IdDiseno,lc.ID,lc.Cantidad,lc.color,lc.talla,lc.TOTAL,pro.Nombre AS npro,pro.Porcentaje,p.Nombre,g.imagen,d.imagen AS imgd,lc.PrecioUnitario,c.F_ultimo,e.estado'+
+										' FROM tlineacesta lc INNER JOIN tproducto p ON lc.Idproducto = p.ID'+
+										' INNER JOIN tdisenos d ON lc.IdDiseno = d.ID'+
+										' INNER JOIN tcesta c ON lc.IdCesta = c.ID'+
+										' INNER JOIN testados e ON c.IdEstados = e.ID'+
+										' INNER JOIN tgaleria g ON lc.IdGaleria = g.ID'+
+										' INNER JOIN tpromociones pro ON lc.IdPromociones = pro.ID'+
+										' WHERE lc.ID = ?',req.params.id);
+
+	detalle[0].F_ultimo = detalle[0].F_ultimo.toDateString();
+
+	res.render('partials/detalle',{detalle: detalle[0], 'adm': req.user.esadmin});
 });
 //boton comprar otra vez para clientes, id == linea de cesta
-router.post('/mispedidos/detalle/:id',isLoggedIn,async(req,res) => {
+router.get('/mispedidos/detalle/compra/:id',isLoggedIn,async(req,res) => {
 
 	
 	res.redirect('/links/cesta');
@@ -194,7 +224,8 @@ router.post('/mispedidos/detalle/:id',isLoggedIn,async(req,res) => {
 //Si soy admin, boton ver diseno elegido, id == deseno
 router.get('/mispedidos/detalle/diseno/:id',isLoggedIn,async(req,res) => {
 	
-	res.render('partials/diseno-pedido',{diseno});
+
+	res.render('partials/diseno-pedido',);
 });
 //Descargar diseno al local 
 router.post('/mispedidos/detalle/diseno/:id',isLoggedIn,async(req,res) => {
@@ -228,9 +259,11 @@ router.post('/misdisenos/s-add',isLoggedIn,async(req,res) => {
 	const { Nombre } = req.body;
 	if (req.user.esadmin) {
 		var Ambito = req.body.Ambito;
+		var precio = req.body.precio;
 	}
 	else
 		var Ambito = 1;
+		var precio = 5;
 
 	
 
@@ -254,6 +287,7 @@ router.post('/misdisenos/s-add',isLoggedIn,async(req,res) => {
 		Nombre,
 		imagen,
 		Ambito,
+		precio,
 		time: moment().format('YYYY-MM-D hh:mm:ss'),
 		IdUsuario: req.user.ID
 	};
@@ -281,9 +315,12 @@ router.post('/misdisenos/s-edit/:id',isLoggedIn,async(req,res) => {
 	const { Nombre } = req.body;
 	if (req.user.esadmin) {
 		var Ambito = req.body.Ambito;
+		var precio = req.body.precio;
 	}
-	else
+	else{
 		var Ambito = 1;
+		var precio = 5;
+	}
 	var imagen;
 		
 	if(!req.files || Object.keys(req.files).length === 0){
@@ -302,6 +339,7 @@ router.post('/misdisenos/s-edit/:id',isLoggedIn,async(req,res) => {
 	let newDiseno = {
 		Nombre,
 		Ambito,
+		precio,
 		IdUsuario: req.user.ID
 	};
 
