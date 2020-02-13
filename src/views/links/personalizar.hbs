@@ -1,0 +1,88 @@
+<!-- _Vista_Preliminar_--> 
+<div class="col-lg-9">
+  <div class="text-right">
+      <a href="/perfil"><button class="btn-success">Volver</button></a>
+  </div>
+
+  <div class="row" >
+    <div class="col-lg-8 col-md-6 mb-3">
+      <!--<img src="{{image}}" class="personalizador">-->
+      <canvas id="canvas" class="personalizador"></canvas>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-10">
+              <div class="card-body">
+                <h4>
+                  Barra de herramientas 
+                </h4>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#diseños" role="tab" aria-controls="diseños" aria-selected="true" title="Diseños"><i class="fas fa-images"></i></a>
+                    </li>
+                  <li class="nav-item">
+                       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#herramientas" role="tab" aria-controls="herramientas" aria-selected="false" title="Herramientas"><i class="fas fa-object-group"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#subir" role="tab" aria-controls="subir" aria-selected="false" title="Subir foto"><i class="fas fa-upload"></i></a>
+                  </li>
+                 <li class="nav-item">
+                   <a class="nav-link" id="contact-tab" data-toggle="tab" href="#guardar" role="tab" aria-controls="guardar" aria-selected="false" title="Guardar diseño"><i class="fas fa-save" ></i></a>
+                 </li>
+                </ul>
+             </div>
+             <div class="card h-10">
+              <div class="card-body">
+               <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="diseños" role="tabpanel" aria-labelledby="home-tab">
+                     <h4>Diseños</h4>
+                     <!--Lista_Deiseños____NO__BORRAR__ID-->
+                   <div class="content">
+                      <label class="chevron-toggle">
+                       <img id="drag1" src="images/diseños/Puro_fuego.png" draggable="true" ondragstart="drag(event)"class="chevron-toggle__chevron">
+                       <img id="drag2" src="images/diseños/Dancing.png" draggable="true" ondragstart="drag(event)"class="chevron-toggle__chevron">
+                       <img id="drag3" src="images/diseños/Mi_elecion.png" draggable="true" ondragstart="drag(event)"class="chevron-toggle__chevron">
+                       <img id="drag4" src="images/diseños/Gato_momia.png" draggable="true" ondragstart="drag(event)"class="chevron-toggle__chevron">
+                      </label>
+                    </div>
+                   </div>
+                  <div class="tab-pane fade" id="herramientas" role="tabpanel" aria-labelledby="herramientas-tab">
+                   <h4>Herramientas</h4>
+                      <p>Tamaño</p>
+                      <form name="size">
+                        <input type="range" min="12" max="40" step="1" value="12" class="size" name="fontSize">
+                    </form>
+                   </div>
+                  <div class="tab-pane fade" id="subir" role="tabpanel" aria-labelledby="subir-tab">
+                 <h4>Subir tu foto</h4>
+                   <div class="custom-file">
+                      <input type="file" multiple="true">
+                      <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+                    </div>
+                 </div>
+                 <div class="tab-pane fade" id="guardar" role="tabpanel" aria-labelledby="guardar-tab">
+                  <h4>Guardar este diseño</h4>
+                 </div>
+                </div>
+              </div>
+                <form action="">
+                  <h3>Talla:</h3>
+                  <select class="md-form mdb-select colorful-select dropdown-primary">
+                    <option value="" disabled="" selected="">Elige tu talla</option>
+                    <option value="1">XS</option>
+                    <option value="2">S</option>
+                    <option value="3">L</option>
+                  </select>
+                  <h3>Cantidad:</h3>
+                  <input type="number" name="" min="1" >
+                  <h3>Total:</h3>
+                    <button type="submit" class="btn btn-success">
+                      <i class="fas fa-cart-plus" aria-hidden="true"></i>
+                      Añadir a la cesta
+                    </button>
+                </form>
+            </div>
+          </div>
+
+
+  </div>

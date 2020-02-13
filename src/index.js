@@ -84,8 +84,8 @@ app.use((req,res,next) => {
 app.use(require('./rutas/index.js'));
 app.use(require('./rutas/usuario.js'));
 
-// cuando la ruta empieza por /links, llama otro fichero.
-//app.use('/links',require('./rutas/links.js')); 
+// cuando accedemos a la pagina de personalizar y la cesta
+app.use('/links',require('./rutas/links.js'));  
 
 //Cuando el usuario accede al web, aparece perfil personal -- /perfil
 app.use('/perfil',require('./rutas/perfil.js'));

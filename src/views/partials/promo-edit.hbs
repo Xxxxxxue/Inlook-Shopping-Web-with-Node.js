@@ -9,7 +9,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" role="tab" href="/perfil/promocion/p-edit" data-toggle="tab">
+            <a class="nav-link active" role="tab" href="/perfil/promocion/p-edit/{{p.ID}}" data-toggle="tab">
               <i class="fas fa-user mr-1" aria-hidden="true"></i>
               Editar promoción
             </a>
@@ -21,7 +21,7 @@
           <div class="tab-pane fade in show active" role="tabpanel">
 
             <div class="modal-body">
-              <form action="/perfil/promocion/p-add" method="post" encType="multipart/form-data">
+              <form action="/perfil/promocion/p-edit/{{p.ID}}" method="post" encType="multipart/form-data">
                   
                 <br>
                 <div class="form-group">

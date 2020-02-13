@@ -15,6 +15,9 @@
     <!-- ICONOS -->
    <script src="https://kit.fontawesome.com/5c5764d633.js" crossorigin="anonymous"></script>
 
+   <!--EDIT IMAGE-->
+   <script src="/fabric/dist/fabric.min.js"></script> 
+
     <script>
       $(document).ready(function(){
 
@@ -56,9 +59,10 @@
             </ul>
            
             <div class="log">
-              <a href="">
+              <a href="/links/cesta">
                 <button class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
               </a>
+
               {{#unless user}}
               <a href="/login">
                 <button class="btn btn-success" data-toggle="modal" data-target="#acceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button>
@@ -68,6 +72,11 @@
                 <button class="btn btn-success"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Cerrar sesión</b></button>
               </a>
               {{/unless}}
+
+              <a href="/links/personalizar">
+                <button class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
+              </a>
+
             </div>
           </div>
         </div>

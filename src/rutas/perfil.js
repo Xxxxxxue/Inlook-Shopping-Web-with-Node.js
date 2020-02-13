@@ -175,14 +175,32 @@ router.post('/changepass/:id',isLoggedIn,passport.authenticate('local.change', {
 router.get('/mispedidos',isLoggedIn,async(req,res) => {
 
 	
-	res.render('links/mispedidos');
+	res.render('links/mispedidos',{'adm': req.user.esadmin});
 });
-router.post('/mispedidos/id',isLoggedIn,async(req,res) => {
 
+//ver detalles y comprar otra vez si desea
+router.get('/mispedidos/detalle/:id',isLoggedIn,async(req,res) => {
+
+	
+	res.render('partials/ped-detalle',{detalle});
+});
+//boton comprar otra vez para clientes, id == linea de cesta
+router.post('/mispedidos/detalle/:id',isLoggedIn,async(req,res) => {
+
+	
+	res.redirect('/links/cesta');
+});
+
+//Si soy admin, boton ver diseno elegido, id == deseno
+router.get('/mispedidos/detalle/diseno/:id',isLoggedIn,async(req,res) => {
+	
+	res.render('partials/diseno-pedido',{diseno});
+});
+//Descargar diseno al local 
+router.post('/mispedidos/detalle/diseno/:id',isLoggedIn,async(req,res) => {
 	
 	res.redirect('/perfil/mispedidos');
 });
-
 
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -191,10 +209,13 @@ router.post('/mispedidos/id',isLoggedIn,async(req,res) => {
 //PAGINA MIS DISENOS
 router.get('/misdisenos',isLoggedIn,async(req,res) => {
 
-	const disenos = await db.query('SELECT * FROM tdisenos WHERE IdUsuario = ?',[req.user.ID]);
+	const disenos = await db.query('SELECT * FROM tdisenos WHERE IdUsuario = ? ORDER BY time DESC',[req.user.ID]);
+	for(var i=0; i<disenos.length; i++) {
+		disenos[i].time = disenos[i].time.toString();
+	}
 	//console.log(disenos);
 	//conseguir todos los imagenes del usuario y saca al pantalla, luego anadir modificar y eliminar
-	res.render('links/misdisenos',{disenos});
+	res.render('links/misdisenos',{disenos,'adm': req.user.esadmin,'id':req.user.ID});
 });
 
 //anadir disenos
@@ -233,13 +254,13 @@ router.post('/misdisenos/s-add',isLoggedIn,async(req,res) => {
 		Nombre,
 		imagen,
 		Ambito,
+		time: moment().format('YYYY-MM-D hh:mm:ss'),
 		IdUsuario: req.user.ID
 	};
 	
 	await db.query('INSERT INTO tdisenos SET ?',[newDiseno]);
 	res.redirect('/perfil/misdisenos');
 });
-
 
 //editar disenos
 router.get('/misdisenos/s-edit/:id',isLoggedIn,async(req,res) => {
@@ -280,10 +301,12 @@ router.post('/misdisenos/s-edit/:id',isLoggedIn,async(req,res) => {
 
 	let newDiseno = {
 		Nombre,
-		imagen,
 		Ambito,
 		IdUsuario: req.user.ID
 	};
+
+	if(imagen != null)
+ 		newDiseno.imagen = imagen;
 	
 	await db.query('UPDATE tdisenos SET ? WHERE ID= ?',[newDiseno,req.params.id]);
 	res.redirect('/perfil/misdisenos');
@@ -295,6 +318,19 @@ router.get('/misdisenos/s-elimir/:id',isLoggedIn,async(req,res) => {
 	await db.query('DELETE FROM tdisenos WHERE ID = ?',[req.params.id]);
 	res.redirect('/perfil/misdisenos');
 });
+
+//disenos de cllientes
+router.get('/misdisenos/otros/:id',isLoggedIn,async(req,res) => {
+
+	const disenos = await db.query('SELECT * FROM tdisenos WHERE IdUsuario != ? ORDER BY time DESC',[req.params.id]);
+	for(var i=0; i<disenos.length; i++) {
+		disenos[i].time = disenos[i].time.toString();
+	}
+	//console.log(disenos);
+	//conseguir todos los imagenes del usuario y saca al pantalla, luego anadir modificar y eliminar
+	res.render('partials/diseno-cl',{disenos});
+});
+
 
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -398,6 +434,7 @@ router.post('/promocion/p-add',isLoggedIn,async(req,res) => {
 router.get('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
 
 	const p = await db.query('SELECT * FROM tpromociones WHERE ID = ?',[req.params.id]);
+
 	var ini = p[0].F_inicio;
 	var fin = p[0].F_fin;
 
@@ -406,14 +443,14 @@ router.get('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
 	
 	if(ini.getMonth() < 10 )
 		p[0].F_inicio += '0';
-	p[0].F_inicio += ini.getMonth()+'-';
+	p[0].F_inicio += (ini.getMonth()+1)+'-';
 	if(ini.getDate() < 10 )
 		p[0].F_inicio += '0';
 	p[0].F_inicio += ini.getDate();
 
 	if(fin.getMonth() < 10 )
 		p[0].F_fin += '0';
-	p[0].F_fin += fin.getMonth()+'-';
+	p[0].F_fin += (fin.getMonth()+1)+'-';
 	if(fin.getDate() < 10 )
 		p[0].F_fin += '0';
 	p[0].F_fin += fin.getDate();
@@ -433,9 +470,8 @@ router.post('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
 
 	const { Nombre,Descripcion,CodigoPromo,Porcentaje,F_inicio,F_fin,Envio } = req.body;
 
- 	//console.log(req.files);
+ 	console.log(req.files);
 	if(!req.files || Object.keys(req.files).length === 0){
-		var imagen = 0;
 	}
 	else{
 		let sampleFile = req.files.imagen;
@@ -455,9 +491,11 @@ router.post('/promocion/p-edit/:id',isLoggedIn,async(req,res) => {
  		Porcentaje,
  		F_inicio,
  		F_fin,
- 		Envio,
- 		imagen
+ 		Envio
  	}
+
+ 	if(imagen != null)
+ 		newPromo.imagen = imagen;
 
  	await db.query('UPDATE tpromociones SET ? WHERE ID = ?',[newPromo,req.params.id]);
 	res.redirect('/perfil/promocion');

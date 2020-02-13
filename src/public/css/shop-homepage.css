@@ -301,14 +301,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e53266d', e
 	background-color: rgb(59, 25, 75);
 }
 /*___________________Personalizador_____________*/
-.personalizador-vista{
+.personalizador{
 	width: 100%;
 	height: 800px;
 	background-color: white;
-	background:url("../images/camisetas/morada-hombre-mangacorta.png");
 	background-position: center;
 	background-repeat: no-repeat;	
 }
+
 #posicion{
 	width: 200px; 
 	height: 350px;
