@@ -22,14 +22,14 @@
    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
-    <script>
+   <script>
       $(document).ready(function(){
 
-        //mandaAjax('POST','/1','','listadeproductos');
+        mandaAjax('GET','/page','','paginacion');
 
       });
-          
-    </script>
+            
+   </script>
 
     <title>INLOOK</title>
   </head>
@@ -39,12 +39,18 @@
     <nav class="navegacion">
       <nav class="navbar navbar-expand-lg navbar-dark bg-Purple fixed-top">
         <div class="container">
-          <img class="logo" src="/image/SVG/logo.svg" width="50%">
+          <img class="logo" src="/image/SVG/logo.svg" width="50%" style="margin-top: 8%;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+              {{#if user}}
+              <li class="nav-item">
+                <a class="nav-link" href="/perfil"><i class="fas fa-user" aria-hidden="true" title="pagina personal"></i>
+                </a>
+              </li>
+              {{/if}}
               <li class="nav-item active">
                 <a class="nav-link" href="/"><i class="fas fa-home" aria-hidden="true"></i>
                   <span class="sr-only">(current)</span>
@@ -64,7 +70,7 @@
            
             <div class="log">
               <a href="/links/cesta">
-                <button class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
+                <button class="btn btn-success" data-target="#cesta"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
               </a>
 
               {{#unless user}}

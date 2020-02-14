@@ -20,7 +20,7 @@
 	                    <h4 class="card-title">{{Nombre}}</h4>
                			<p class="card-text ">Precio: {{precio}} €</p>
 	                    <p class="card-text ">Fecha de creación: <br> {{time}}</p>
-	                    <a href="/perfil/misdisenos/s-elimir/{{ID}}"><button class="btn btn-danger">Eliminar</button></a>
+	                    <button type="button" class="btn btn-danger" ><i class="fa fa-trash" onclick="elim({{ID}})"></i></button>
 	                    <a href="/perfil/misdisenos/s-edit/{{ID}}"><button class="btn btn-primary" data-toggle="modal" data-target="#disenoedit">Editar</button></a>
 	                </div>
 	            </div>
@@ -37,3 +37,13 @@
 	</div>
 </div>
 
+<!------------------------------------------------------------------------------------------------------------------------->
+<script>
+	function elim(id) {
+      var op = confirm('¿Desea eliminar este diseño?');
+      if(op == true) 
+       location.href = '/perfil/misdisenos/s-elimir/'+ id;  // redireccionar alla
+      //window.open ---> // abre la pagina nueva html
+      
+    }
+</script>

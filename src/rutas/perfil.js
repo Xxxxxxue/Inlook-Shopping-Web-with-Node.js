@@ -19,13 +19,15 @@ router.get('/datapers',isLoggedIn,async(req,res) => {
 	const cl = await db.query('SELECT * FROM tclientes WHERE id = ?',[req.user.IdClientes]);
 	const dirs  = await db.query('SELECT * FROM tdireccion WHERE IdClientes = ?',[cl[0].ID]);
 
-	for(var i=0;i<dirs.length;i++) {
+	if(dirs.length != null){
+		for(var i=0;i<dirs.length;i++) {
 
-		if(dirs[i].Tipo == 0 || dirs[i].Tipo == 2)
-			dirs[i].entrega = 'checked';
-		if(dirs[i].Tipo == 1 || dirs[i].Tipo == 2)
-			dirs[i].factura = 'checked';
-	
+			if(dirs[i].Tipo == 0 || dirs[i].Tipo == 2)
+				dirs[i].entrega = 'checked';
+			if(dirs[i].Tipo == 1 || dirs[i].Tipo == 2)
+				dirs[i].factura = 'checked';
+		
+		}
 	}
 	console.log(cl,dirs);
 	/*var id = req.user.ID;
@@ -241,8 +243,10 @@ router.post('/mispedidos/detalle/diseno/:id',isLoggedIn,async(req,res) => {
 router.get('/misdisenos',isLoggedIn,async(req,res) => {
 
 	const disenos = await db.query('SELECT * FROM tdisenos WHERE IdUsuario = ? ORDER BY time DESC',[req.user.ID]);
-	for(var i=0; i<disenos.length; i++) {
-		disenos[i].time = disenos[i].time.toString();
+	if(disenos.length != null){
+		for(var i=0; i<disenos.length; i++) {
+			disenos[i].time = disenos[i].time.toString();
+		}
 	}
 	//console.log(disenos);
 	//conseguir todos los imagenes del usuario y saca al pantalla, luego anadir modificar y eliminar
@@ -418,12 +422,16 @@ router.get('/gestion/g-elimir/:id',isLoggedIn,async(req,res) => {
 //PAGINA PROMOCIONES
 router.get('/promocion',isLoggedIn,async(req,res) => {
 
-	const promo = await db.query('SELECT * FROM tpromociones ORDER BY f_inicio DESC');
+	const promo = await db.query('SELECT * FROM tpromociones WHERE ID != 11 ORDER BY f_inicio DESC');
+	
 
-	for(var i=0; i<promo.length; i++) {
-		promo[i].F_inicio = promo[i].F_inicio.toDateString();
-		promo[i].F_fin = promo[i].F_fin.toDateString();
+	if(promo.length != null){
+		for(var i=0; i<promo.length; i++) {
+			promo[i].F_inicio = promo[i].F_inicio.toDateString();
+			promo[i].F_fin = promo[i].F_fin.toDateString();
+		}
 	}
+
 	//console.log(promo);
 	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
 	res.render('links/promocion',{ promo });

@@ -19,10 +19,10 @@
 	                    <p class="card-text ">Fecha inicio: {{F_inicio}}</p>
 	                    <p class="card-text ">Fecha fin: {{F_fin}}</p> 
 	                    <a href="/perfil/promocion/p-edit/{{ID}}"><button class="btn btn-success" data-toggle="modal" data-target="#promoedit">Editar</button></a>
-	                    <a href="/perfil/promocion/p-elimir/{{ID}}"><button class="btn btn-success">Eliminar</button></a>
+	                    <button class="btn btn-success" onclick="elim({{ID}})">Eliminar</button>
 	                   
 	                </div>
-	            </div>
+	            </div>  
 	        </div>
 	       
 	       {{else}} 
@@ -35,3 +35,14 @@
 			
 	</div>
 </div>
+
+<!-------------------------------------------------------------------------------------------------------------------->
+<script>
+	function elim(id) {
+      var op = confirm('¿Desea eliminar esta promoción?');
+      if(op == true) 
+       location.href = '/perfil/promocion/p-elimir/'+ id;  // redireccionar alla
+      //window.open ---> // abre la pagina nueva html
+      
+    }
+</script>

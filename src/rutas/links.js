@@ -14,5 +14,9 @@ router.get('/cesta',async(req,res) => {
 
 	res.render('links/cesta');
 });
+router.post('/cesta',async(req,res) => {
+
+	res.end('Comprado!!');
+});
 
 module.exports = router; 

@@ -7,7 +7,7 @@ $(document).ready(function () {
 			sZeroRecords: "No se encontraron resultados",
 			sEmptyTable: "Ningún dato disponible en esta tabla",
 			sInfo: "",
-			sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+			sInfoEmpty: "",
 			sInfoFiltered: "(filtrado de un total de MAX registros)",
 			sInfoPostFix: "",
 			sSearch: "Buscar:",
