@@ -184,7 +184,7 @@ router.get('/mispedidos',isLoggedIn,async(req,res) => {
 										' INNER JOIN tdisenos d ON lc.IdDiseno = d.ID'+
 										' INNER JOIN tcesta c ON lc.IdCesta = c.ID'+
 										' INNER JOIN testados e ON c.IdEstados = e.ID'+
-										' WHERE c.IdUsuario != ? AND e.estado != "pendiente" ORDER BY F_ultimo DESC ',req.user.ID);
+										' WHERE e.estado != "pendiente" ORDER BY F_ultimo DESC ');
 	}
 
 	else{
@@ -193,7 +193,7 @@ router.get('/mispedidos',isLoggedIn,async(req,res) => {
 										' INNER JOIN tdisenos d ON lc.IdDiseno = d.ID'+
 										' INNER JOIN tcesta c ON lc.IdCesta = c.ID'+
 										' INNER JOIN testados e ON c.IdEstados = e.ID'+
-										' WHERE c.IdUsuario = ? AND e.estado = "pedido" ORDER BY F_ultimo DESC',req.user.ID);
+										' WHERE c.IdUsuario = ? AND e.estado != "pendiente" ORDER BY F_ultimo DESC',req.user.ID);
 	}
 
 	//console.log(pedido[0].estado);
@@ -382,8 +382,13 @@ router.get('/misdisenos/otros/:id',isLoggedIn,async(req,res) => {
 //PAGINA GESTION
 router.get('/gestion',isLoggedIn,async(req,res) => {
 
+
+	const  p = await db.query('SELECT P.*, G.imagen FROM tproducto P INNER JOIN (SELECT IdProducto ,min(imagen) AS imagen \
+					                FROM shop_inlook.tgaleria GROUP BY idProducto) G  ON P.ID = G.IdProducto ORDER BY P.time DESC');
+
 	//conseguir la lista de producto y luego podra anadir, modificar,eliminar 
-	res.render('links/gestion-producto');
+	res.render('links/gestion-producto',{p});
+
 });
 
 //Anadir producto

@@ -1,13 +1,66 @@
 <div class="col-lg-9">
+	<div class="text-right">
+		<a href="/perfil/gestion/g-add"><button class="btn-success"  data-toggle="modal" data-target="#ficha"><i class="fas fa-upload"></i></button></a>
+    	<a href="/perfil"><button class="btn-success">Volver</button></a>
+  	</div>
 	<div class="form-body">
 
 		<div class="form-body">
 			<div class="card-body">	
-				<h4>Gestion</h4>
+				<h4>Gestión de productos</h4>
 				<!--tabla/lista de productos-->
-				
+				<div class="row" id="productos">
+					{{#each p}}
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img class="card-img-top" alt="" src="{{imagen}}" style="height: 250px;border: 1px solid;">
+							<div class="card-body">
+								<h4>{{Nombre}}</h4>
+								<h2>{{Precio}} €</h2>
+								<p class="card-text">{{Descripcion}}</p>
+							</div>
+							<button class="btn btn-success" data-target="#ficha" data-toggle="modal">
+								<a href="/perfil/gestion/g-edit/{{ID}}">Editar</a>
+							</button>
+							<button class="btn btn-success" onclick="elim({{ID}})">
+								Eliminar
+							</button>
+						</div>
+					</div>
+					{{else}}
+					<div class="row">
+						<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img class="card-img-top" alt="" src="{{imagen}}">
+							<div class="card-body">
+								<p>NO HAY PRODUCTOS</p>
+							</div>
+							<button class="btn btn-success" data-target="#ficha" data-toggle="modal">
+								<a href="/perfil/gestion/g-add">Crear uno!!!</a>
+							</button>			
+						</div>
+						</div>
+					</div>
+					{{/each}}
+				</div>
 
 			</div>
 		</div>
 	</div>
 </div>
+
+<!--------------------------------------------------------------------------------------------------------------->
+
+<script>
+  
+    //funcion ventana de confirmacion para eliminar direccion
+    function elim(id) {
+      var op = confirm('¿Desea eliminar este producto?');
+      if(op == true) 
+       location.href = '/perfil/gestion/g-elimir/'+ id;  // redireccionar alla
+      //window.open ---> // abre la pagina nueva html
+      
+    }
+
+
+</script>

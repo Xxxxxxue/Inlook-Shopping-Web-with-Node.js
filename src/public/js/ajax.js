@@ -90,7 +90,7 @@ function post_process(process,rta) {
 			for(var i = 0; i < productos.length ; i++) {
 				cards += '<div class="col-lg-4 col-md-6 mb-4">'+
 				            '<div class="card h-100">'+
-				                '<img class="card-img-top" alt="ropa" src="'+productos[i].imagen+'">'+
+				                '<img class="card-img-top" alt="ropa" src="'+productos[i].imagen+'" style="height: 250px;border: 1px solid;">'+
 				              '<div class="card-body">'+
 				                '<h4>'+productos[i].Nombre+'</h4>'+
 				                '<h2>'+productos[i].Precio+'€</h2>\
@@ -102,7 +102,7 @@ function post_process(process,rta) {
 				          '</div>';
 			}
 
-			$('#pr').html(cards);
+			$('#pr_').html(cards);
 
 
 		break;
