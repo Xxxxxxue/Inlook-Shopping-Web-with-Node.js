@@ -1,0 +1,71 @@
+<div tabindex="-1" class="modal fade show" id="asceso" role="dialog" aria-labelledby="myModalLabel" style="padding-right: 16px; display: block;" aria-modal="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" role="tab" href="/registro" data-toggle="tab"><i class="fas fa-user mr-1" aria-hidden="true"></i>
+            REGISTRAR</a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+
+          <div class="tab-pane fade in show active" id="panel8" role="tabpanel">
+
+
+            <!--Body REGISTRO-->
+            <div class="modal-body">
+              <form action="/registro" method="POST">
+                <div class="md-form form-sm">
+                  <i class="fas fa-user-alt" aria-hidden="true"></i>
+                  <input class="form-control form-control-sm validate" type="text" name="nombre">
+                  <label>Tu Nombre</label>
+                </div>
+                <div class="md-form form-sm">
+                  <i class="fas fa-user-alt" aria-hidden="true"></i>
+                  <input class="form-control form-control-sm validate" type="text" name="apellidos">
+                  <label>Tu Apellido</label>
+                </div>
+                <div class="md-form form-sm">
+                  <i class="fas fa-envelope prefix" aria-hidden="true"></i>
+                  <input class="form-control form-control-sm validate" type="email" name="usuario">
+                  <label>Tu correo</label>
+                </div>
+
+                <div class="md-form form-sm">
+                  <i class="fas fa-lock prefix" aria-hidden="true"></i>
+                  <input class="form-control form-control-sm validate" type="password" name="clave">
+                  <label>Tu contraseña</label>
+                </div>
+
+                <div class="md-form form-sm">
+                  <i class="fas fa-lock prefix" aria-hidden="true"></i>
+                  <input class="form-control form-control-sm validate" type="password" name="clave1">
+                  <label>Repite la contraseña</label>
+                </div>
+
+                <div class="text-center form-sm mt-2">
+                  <button class="btn-success">Unirse <i class="fas fa-sign-in ml-1" aria-hidden="true"></i></button>
+                </div>    
+              </form>
+            </div> 
+
+            <!--Footer-->
+            <div class="modal-footer">
+              <a href="/login"><button class="btn btn-success">Volver</button></a>
+              <a href="/"><button class="btn btn-success" data-dismiss="modal"><i class="fas fa-window-close" aria-hidden="true"></i></button></a>
+            </div>
+          </div>
+          <!--/.Panel 8-->
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>

@@ -1,0 +1,98 @@
+<div class="col-lg-9">
+  <div class="carousel slide" id="carouselExampleCaptions" data-ride="carousel">
+
+    <div class="carousel-inner">
+      {{#each promo}}
+      <div class="carousel-item {{s}}">
+        <img src="{{imagen}}">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{Nombre}}</h5>
+          <p>{{Descripcion}}</p>
+          <p>Cupón:{{CodigoPromo}}</p>
+        </div>
+      </div>
+      {{else}}
+      <div class="carousel-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false" width="800" height="400"><title>Placeholder</title><rect fill="#777" width="100%" height="100%" /><text fill="#555" x="50%" y="50%" dy="0.3em">First slide</text></svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>#PROMOCIONES</h5>
+        </div>
+      </div>
+      {{/each}}
+      
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>  
+  <br>  
+
+
+  <div class="row justify-content-md-center">
+   <div class="col-lg-4 mb-4">
+      <div class="btn-group btn-group-lg" role="group" aria-label="..."> 
+         <button class="btn btn-success" style="width: 100px;" id="hombre"><i class="fas fa-male fa-3x " aria-hidden="true"></i><br>Hombre</button>
+         <button class="btn btn-success" style="width: 100px;" id="mujer"><i class="fas fa-female fa-3x" aria-hidden="true"></i><br>Mujer</button>
+         <button class="btn btn-success" style="width: 100px;" id="nino"><i class="fas fa-baby fa-3x" aria-hidden="true"></i><br>Infantil</button>
+      </div>
+   </div>
+  </div>
+ 
+
+  <!--listado de producto y firtro-->
+  <div class="row justify-content-md-center">
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+         <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-success collapsed" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 0.8em;" type="button" data-target="#collapsefiltro" data-toggle="collapse">
+                Mas filtros
+              </button>
+            </h2>
+          </div>
+          <div class="collapse" id="collapsefiltro" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline">
+                  {{#each categoria}}
+                  <input class="form-check-input" id="{{ID}}" type="checkbox" value="{{ID}}">
+                  <label class="form-check-label mr-1" for="{{ID}}">{{categoria}}</label>
+                  {{/each}}
+                </div>
+                <button class="btn btn-success" id="filtro" style="width: 100px;" type="button">Filtrar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!--<button onclick="desaparece()"></button>-->
+    {{#if si}}
+      {{>producto_inicial}}
+    {{else}}
+      <div class="row" id="pr_"></div>
+    {{/if}}
+  </div>
+
+  <div class="container text-center" id="paginas"></div>
+
+</div>
+
+<!------------------------------------------------------------------------------------------------------------------------->
+
+
+<!--<script>
+      
+  function desaparece() {
+    console.log(window.location.pathname);
+    if(window.location.pathname != '/')
+      document.getElementById('proinicial').innerHTML ='';
+  }
+      
+</script>-->
+
+

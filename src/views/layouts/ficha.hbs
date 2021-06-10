@@ -1,0 +1,88 @@
+<div tabindex="-1" class="modal fade show" id="ficha" role="dialog" aria-labelledby="producto" style="padding-right: 16px; display: block;" aria-modal="true">
+  <div class="modal-dialog modal-lg mt-5" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-lg-5">
+            <!--Carousel Wrapper-->
+            <div class="carousel slide carousel-fade carousel-thumbnails pointer-event" id="carousel-thumb" data-ride="carousel">
+              <!--Slides-->
+              <div class="carousel-inner" role="listbox">
+                {{#each img}}
+                <div class="carousel-item {{s}}">
+                  <img class="d-block w-100" alt="First slide" src="{{imagen}}">
+                </div>
+                {{/each}}
+              </div>
+              <!--/.Slides-->
+              <!--Controls-->
+              <a class="carousel-control-prev" role="button" href="#carousel-thumb" data-slide="prev" style="margin-top: 180px;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" role="button" href="#carousel-thumb" data-slide="next" style="margin-top: 180px;"> 
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>  
+            </div>
+            <!--col-5-->
+          </div>
+
+          <div class="col-lg-7">
+            <h2 class="h2-responsive product-name">
+              <strong>{{p.Nombre}}</strong>
+            </h2>
+            <h4 class="h4-responsive">
+              <span class="green-text">
+                <strong><h2>{{p.Precio}}</h2></strong>
+              </span>
+            </h4>
+            <p>Descripción: {{p.Descripcion}}</p>
+            <p>Referencia: {{p.Referencia}}</p>
+ 
+            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+              <div class="card">
+
+        </div>
+            
+
+            <!-- Add to Cart -->
+            <div class="card-body text-center">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3>Talla</h3>
+                  <br>
+                  <select class="md-form mdb-select colorful-select dropdown-primary" name="tal">
+                    <option disabled="" value="" selected="">Elige tu talla</option>
+                    {{#each talla}}
+                    <option value="{{ID}}">{{valor}}</option>
+                    {{/each}}
+                  </select>   
+                </div>
+
+                <div class="col-md-6">
+                  <h3>Color</h3>
+                  <br>
+                  {{#each color}}
+                  <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="Ambito" id="exampleRadios1" value="{{ID}}" >
+                    <label class="form-check-label" for="exampleRadios1">{{valor}}</label>
+                  </div>
+                  {{/each}}
+              
+                </div>
+              </div>
+              <br>
+              <div class="text-center"><a href="/links/personalizar"><button class="btn btn-success">Personalizar</button></a></div>
+            </div>
+            <div class="modal-footer">
+              <a href="/"><button class="btn btn-success " type="button" data-dismiss="modal"><i class="fas fa-window-close" aria-hidden="true"></i></button></a>
+            </div>
+            <!-- /.Add to Cart -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

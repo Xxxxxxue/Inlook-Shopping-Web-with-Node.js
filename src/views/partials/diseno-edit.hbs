@@ -1,0 +1,70 @@
+<div tabindex="-1" class="modal fade show" id="disenoedit" role="dialog" aria-labelledby="myModalLabel" style="padding-right: 16px; display: block;" aria-modal="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+              <a class="nav-link active" role="tab" href="/perfil/misdisenos/s-edit" data-toggle="tab">
+              <i class="fas fa-user mr-1" aria-hidden="true"></i>
+              Editar Diseño
+            </a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade in show active" role="tabpanel">
+
+            <div class="modal-body">
+              <form action="/perfil/misdisenos/s-edit/{{diseno.ID}}" method="post" encType="multipart/form-data">
+                  
+                <br>
+                <div class="form-group">
+                  <div class="input-group">
+                    <img id='img-upload' src="{{diseno.imagen}}" alt="imagen" style="margin:auto; border: 1px solid; width:250px;height: 250px;">
+                    <div class="input-group-btn mt-2 text-center">
+                      <button class="btn btn-success btn-file" style="position: absolute;bottom: 220px;right:50px">
+                      Subir imagen 
+                      <input type="file" id="imgInp" name="imagen">
+                      </button>
+                    </div>
+                    <!--<input type="text" class="form-control" readonly>-->
+                  </div>
+                </div>       
+                <input type="text" class="form-control" id="s1" placeholder="Nombre" name="Nombre" value="{{diseno.Nombre}}">
+                <label for="s1">Nombre</label>
+                
+                {{#if adm}}
+                <input type="Number" class="form-control" id="s1" step="0.01" placeholder="0.00" name="precio" value="{{diseno.precio}}">
+                <label for="s1">Precio</label>
+                <br>
+                Tipos:
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Ambito" id="exampleRadios1" value="0" {{diseno.public}}>
+                  <label class="form-check-label" for="exampleRadios1">Público</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Ambito" id="exampleRadios2" value="1" {{diseno.privad}}>
+                  <label class="form-check-label" for="exampleRadios2">Privado</label>
+                </div>
+                {{/if}}
+                <div class="text-center"><button class="btn btn-success">Guardar</button></div>      
+              </form>
+            </div>
+
+            <div class="modal-footer">
+
+              <a href="/perfil/misdisenos"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-window-close"></i></button></a>
+            </div>
+
+        
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

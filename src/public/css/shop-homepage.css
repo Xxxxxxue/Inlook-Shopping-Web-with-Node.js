@@ -4,6 +4,63 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
 @import url('https://fonts.googleapis.com/css?family=Teko&display=swap');
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 100%;
+}
+/*estilos de subir imagen*/
+
+
+.pagination{
+	width: 100%
+	margin: auto;
+
+}
+.page-link a{
+		background-color:#67B32E;
+	color:#53266D; 
+}
+
+.page-item a{
+	background-color:#67B32E;
+	color:#53266D; 
+	border: solid 3px #53266D;
+
+}
+.page-item.active .page-link {
+		background-color:#53266D;
+	color:#67B32E; 
+	border: solid 3px #67B32E;
+}
+.page-item a:hover {
+		background-color:#53266D;
+	color:#67B32E; 
+	border: solid 3px #67B32E;
+}
+.page-item{
+	background-color:#67B32E;
+}
+/*______pagination*/
 	
 body {
 	width: 100%;
@@ -113,20 +170,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', e
 	background: #53266D;
 	color: #67B32E;
 }
-.card-title{
+/*.card-title{
 		background: #67B32E;
-}
+}*/
 .card-title a{
 	margin: 0 30% 0 30%;
 	text-align: center;
 	color: #53266D;
 }
-.card-foote{
+.card-footer{
 	background: #67B32E;
 	color: #53266D;
 }
 .carousel-control-prev-icon{
-	background-image: url("../images/SVG/prev.svg");
+	background-image: url("/image/SVG/prev.svg");
 	background-repeat: no-repeat;
     background-size: cover;
 	width: 10px;
@@ -141,7 +198,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', e
 	
 }
 .carousel-control-next-icon{
-	background-image: url("../images/SVG/nex.svg");
+	background-image: url("/image/SVG/nex.svg");
 	background-repeat: no-repeat;
     background-size: cover;
 	width: 10px;
@@ -156,8 +213,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', e
 /*____________________Mmodal__________________*/
 .modal{
 	background-color: rgba(0,0,0,0.7);
+	overflow: auto;
 }
 .modal-content{
+	
 /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#53266d+0,431c51+53&0.62+1,0.62+100 */
 background: -moz-radial-gradient(center, ellipse cover, rgba(83,38,109,0.62) 0%, rgba(83,38,108,0.62) 1%, rgba(67,28,81,0.62) 53%, rgba(67,28,81,0.62) 100%); /* FF3.6-15 */
 background: -webkit-radial-gradient(center, ellipse cover, rgba(83,38,109,0.62) 0%,rgba(83,38,108,0.62) 1%,rgba(67,28,81,0.62) 53%,rgba(67,28,81,0.62) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -242,14 +301,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e53266d', e
 	background-color: rgb(59, 25, 75);
 }
 /*___________________Personalizador_____________*/
-.personalizador-vista{
+.personalizador{
 	width: 100%;
 	height: 800px;
 	background-color: white;
-	background:url("../images/camisetas/morada-hombre-mangacorta.png");
 	background-position: center;
 	background-repeat: no-repeat;	
 }
+
 #posicion{
 	width: 200px; 
 	height: 350px;
@@ -257,4 +316,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e53266d', e
 	position: relative; 
 	top:30%; 
 	left:32%;
+}
+
+
+/* __________Calendario____________*/
+
+
+#ui-datepicker-div{
+	background-color: #000;
+	padding:5px;
+}
+.ui-icon-circle-triangle-w {
+	padding: 25px;
 }

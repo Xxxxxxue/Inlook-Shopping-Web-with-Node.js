@@ -1,0 +1,17 @@
+<div class="row" id="productos">
+  {{#each p}}
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <img class="card-img-top" alt="" src="{{imagen}}" style="height: 250px;border: 1px solid;">
+      <div class="card-body">
+        <h4>{{Nombre}}</h4>
+        <h2>{{Precio}} €</h2>
+        <p class="card-text">{{Descripcion}}</p>
+      </div>
+      <button class="btn btn-success" type="button" data-target="#ficha" data-toggle="modal">
+        <a href="/ficha/{{ID}}">Ver mas</a>
+      </button>
+    </div>
+  </div>
+  {{/each}}
+</div>

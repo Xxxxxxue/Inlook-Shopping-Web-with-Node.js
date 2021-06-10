@@ -1,0 +1,68 @@
+<div tabindex="-1" class="modal fade show" id="detalles" role="dialog" aria-labelledby="myModalLabel" style="padding-right: 16px; display: block;" aria-modal="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+              <a class="nav-link active" role="tab" href="/perfil/mispedidos/detalle/{{detalle.ID}}" data-toggle="tab">
+              <i class="fas fa-user mr-1" aria-hidden="true"></i>
+              DETALLE
+            </a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <div class="tab-pane fade in show active" role="tabpanel">
+
+            <div class="modal-body" encType="multipart/form-data">
+                  
+                <br>
+                <div class="container">
+                	<div class="row">
+                		<div class="col-6">
+                			<img src="{{detalle.imagen}}" alt="imagen del producto" style="margin:auto; border: 1px solid; width:200px;height: 200px;"> 
+                			<br>
+                			<br>
+                			<p>Producto: {{detalle.Nombre}}</p>
+			                <p>Talla: {{detalle.talla}}</p>
+			                <p>Color: {{detalle.color}}</p>
+			                <p>Promoción: {{detalle.npro}}</p>
+			                <p>Descuento(%): {{detalle.Porcentaje}}</p> 
+                		</div>
+                		<div class="col-6">
+                			<img src="{{detalle.imgd}}" alt="imagen del diseño" style="margin:auto; border: 1px solid; width:200px;height: 200px;">
+                			<br>
+                			<br>
+                			<p>Cantidad: {{detalle.Cantidad}}</p>
+			                <p>Precio unitario: {{detalle.PrecioUnitario}} €</p>
+			                <p>Total: {{detalle.TOTAL}} €</p>
+			                <p>Fecha: {{detalle.F_ultimo}}</p>
+			                <p>Estado: {{detalle.estado}}</p>
+                		</div>
+                	</div>
+				</div>
+				<br>
+				{{#unless adm}}
+                <div class="text-center"><a href="/perfil/mispedidos/detalle/compra/{{detalle.ID}}"><button class="btn btn-success">Comprar otro</button></a></div>
+                {{else}}
+                <div class="text-center"><a href="/perfil/mispedidos/detalle/diseno/{{detalle.IdDiseno}}"><button class="btn btn-success">Descargar diseño</button></a></div>
+                {{/unless}}      
+            </div>
+
+            <div class="modal-footer">
+
+              <a href="/perfil/mispedidos"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-window-close"></i></button></a>
+            </div>
+
+        
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

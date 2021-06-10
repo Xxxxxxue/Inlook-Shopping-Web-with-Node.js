@@ -5,26 +5,54 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/shop-homepage.css">
 
+    <!-- ICONOS -->
+   <script src="https://kit.fontawesome.com/5c5764d633.js" crossorigin="anonymous"></script>
+
+   <!--EDIT IMAGE-->
+   <script src="/fabric/dist/fabric.min.js"></script> 
+
+   <!--DATABASE-->
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+   <script>
+      $(document).ready(function(){
+
+        mandaAjax('GET','/page','','paginacion');
+
+      });
+            
+   </script>
+
     <title>INLOOK</title>
   </head>
-  <body>
+
+
+  <body onload="cambiar()">
     <nav class="navegacion">
       <nav class="navbar navbar-expand-lg navbar-dark bg-Purple fixed-top">
         <div class="container">
-          <img class="logo" src="/image/SVG/logo.svg" width="50%">
+          <img class="logo" src="/image/SVG/logo.svg" width="50%" style="margin-top: 8%;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+              {{#if user}}
+              <li class="nav-item">
+                <a class="nav-link" href="/perfil"><i class="fas fa-user" aria-hidden="true" title="pagina personal"></i>
+                </a>
+              </li>
+              {{/if}}
               <li class="nav-item active">
-                <a class="nav-link" href="#"><i class="fas fa-home" aria-hidden="true"></i>
+                <a class="nav-link" href="/"><i class="fas fa-home" aria-hidden="true"></i>
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
@@ -39,19 +67,41 @@
                 <a class="nav-link" href="#">¿Alguna duda?</a>
               </li>
             </ul>
-
+           
             <div class="log">
-              <button type="submit" class="btn btn-success" data-target="#cart"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
-              <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#asceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button>
+              <a href="/links/cesta">
+                <button class="btn btn-success" data-target="#cesta"><i class="fas fa-cart-plus" aria-hidden="true"></i></button>
+              </a>
+
+              {{#unless user}}
+              <a href="/login">
+                <button class="btn btn-success" data-toggle="modal" data-target="#acceso"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Inicio de sesión</b></button>
+              </a>
+              {{else}}
+              <a href="/salir">
+                <button class="btn btn-success"><b> <i class="fas fa-user" aria-hidden="true"></i><br>Cerrar sesión</b></button>
+              </a>
+              {{/unless}}
+
+              <a href="/links/personalizar">
+                <button class="btn btn-success">Personalizar</button>
+              </a>
+
             </div>
           </div>
         </div>
 
       </nav>
     </nav>
-    {{{body}}}
+    <div class="container">
+      <div class="row">
+        {{>img_hola}}
+        {{{body}}}
+      </div>
+    </div>
 
-
+    
+    <br>
     <footer class="py-5 bg-purpel">
       <div class="container">
         <div class="row">
@@ -74,7 +124,7 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mb-4">
-            <img src="images/info-envio-satisfaction.png" alt="100% satisfacion" width="20%" style="margin: 5%">
+            <img src="/image/info-envio-satisfaction.png" alt="100% satisfacion" width="20%" style="margin: 5%">
             <br>
             <h5>CAMBIOS Y DEVOLUCIONES SIN PROBLEMAS</h5>
 
@@ -82,7 +132,7 @@
 
           </div>
           <div class="col-lg-4 col-md-6 mb-4">
-            <img src="images/info-envio_time.png" alt="48h" width="20%" style="margin: 5%">
+            <img src="/image/info-envio_time.png" alt="48h" width="20%" style="margin: 5%">
             <br>
             <h5>TU PEDIDO EN TU CASA EN 48H</h5>
 
@@ -91,12 +141,17 @@
           </div>
         </div>
       </div>
-      <!-- /.container -->
+
+      <!-- /.container -->  
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/ajax.js"></script>
+    <script src="/js/imagenes.js"></script>
+    <script src="/js/database.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
   </body>
 </html>

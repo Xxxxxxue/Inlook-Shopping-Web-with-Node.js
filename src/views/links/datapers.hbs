@@ -1,0 +1,67 @@
+<div class="col-lg-9">
+  <div class="text-right">
+    <a href="/perfil"><button class="btn-success">Volver</button></a>
+  </div>
+  <div class="form-body">
+    <div class="card-body">	
+      <h4>Datos Personales</h4>
+
+      <form action="/perfil/datapers" method="POST" encType="multipart/form-data">
+      
+        <div class="row">
+          <!--PARTE IMAGEN-->
+          <div class="col-5 mt-4">
+            <div class="form-group">
+              <div class="input-group">
+
+                <img id='img-upload' src="{{cl.Foto}}" alt="foto" style="margin: auto;border-radius: 50%; width:250px;height: 250px;">
+                
+                <div class="input-group-btn mt-2 text-center" style="margin: auto;">
+                  <p>ID: {{id}}</p>
+                  <button class="btn btn-success btn-file">
+                    Cambiar foto 
+                    <input type="file" id="imgInp" name="foto">
+                  </button>
+                </div>
+                <!--<input type="text" class="form-control" readonly>--> 
+              </div>
+            </div>
+          </div>
+          
+          <!--PARTE DATOS BASICOS-->
+          <div class="col">
+            
+              <div class="form-group">
+                <i class="fas fa-user-alt" aria-hidden="true"></i>
+                <input class="form-control form-control-sm validate" type="text" name="Nombre" value="{{cl.Nombre}}">Tu Nombre
+              </div>
+              <div class="form-group">
+                <i class="fas fa-user-alt" aria-hidden="true"></i>
+                <input class="form-control form-control-sm validate" type="text" name="Apellidos" value="{{cl.Apellidos}}">Tu Apellido
+              </div>
+              <div class="form-group">
+                <i class="fas fa-envelope prefix" aria-hidden="true"></i>
+                <input class="form-control form-control-sm validate" type="email" name="Email" value="{{cl.Email}}">Tu Correo
+              </div>
+              <div class="form-group">
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                <input class="form-control form-control-sm validate" type="text" name="Telefono" value="{{cl.Telefono}}">Tu Telefono
+              </div> 
+              <br>
+              <div class="text-center">
+                <button type="submit" class="btn-success">Guardar</button>
+              </div>
+            
+          </div>
+        
+       </div> 
+      </form>
+
+      <div class="container">
+        {{>direccion}}
+      </div>
+
+
+    </div>
+  </div>   
+</div>  

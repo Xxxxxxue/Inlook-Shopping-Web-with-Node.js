@@ -1,0 +1,128 @@
+<div tabindex="-1" class="modal fade show" id="asceso" role="dialog" aria-labelledby="myModalLabel" style="padding-right: 16px; display: block;" aria-modal="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" role="tab" href="/login" data-toggle="tab"><i class="fas fa-user mr-1" aria-hidden="true"></i>
+            Tengo cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" role="tab" href="/registro" data-toggle="tab"><i class="fas fa-user-plus mr-1" aria-hidden="true"></i>
+            No tengo cuenta</a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <!--Panel 7-->
+          {{if (modo.equals('1')}}
+          <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+            <!--Body  LOGIN-->
+
+            <div class="modal-body mb-1">
+              <div class="md-form form-sm mb-5">
+                <i class="fas fa-envelope prefix" aria-hidden="true"></i>
+                <input class="form-control form-control-sm validate" id="modalLRInput10" type="email">
+                <label for="modalLRInput10" data-success="right" data-error="wrong">Tu correo</label>
+              </div>
+
+              <div class="md-form form-sm mb-4">
+                <i class="fas fa-lock prefix" aria-hidden="true"></i>
+                <input class="form-control form-control-sm validate" id="modalLRInput11" type="password">
+                <label for="modalLRInput11" data-success="right" data-error="wrong">Tu contraseña</label>
+              </div>
+              <div class="text-center mt-2">
+                <button class="btn-success">Entrar <i class="fas fa-sign-in ml-1" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+              <div class="options text-center text-md-right mt-1">
+                <p>
+                  ¿No es un miembro?<a class="alert-heading" href="#">Regístrate</a></p>
+                  <p>
+                    <a class="blue-text" href="#">¿Se te olvidó tu contraseña?</a></p>
+                  </div>
+                  <button class="btn btn-success " type="button" data-dismiss="modal"><i class="fas fa-window-close" aria-hidden="true"></i></button>
+                </div>
+
+              </div>
+              <!--/.Panel 7-->
+
+              <!--Panel 8-->
+              {{else}}
+              <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                <!--Body REGISTRO-->
+                <div class="modal-body">
+                  <div class="md-form form-sm mb-5">
+                    <i class="fas fa-user-alt" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm validate" id="modalLRInput12" type="text">
+                    <label for="modalLRInput12" data-success="right" data-error="wrong">Tu Nombre</label>
+                  </div>
+                  <div class="md-form form-sm mb-5">
+                    <i class="fas fa-user-alt" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm validate" id="modalLRInput12" type="text">
+                    <label for="modalLRInput12" data-success="right" data-error="wrong">Tu Apellido</label>
+                  </div>
+                  <div class="md-form form-sm mb-5">
+                    <i class="fas fa-envelope prefix" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm validate" id="modalLRInput12" type="email">
+                    <label for="modalLRInput12" data-success="right" data-error="wrong">Tu correo</label>
+                  </div>
+
+                  <div class="md-form form-sm mb-5">
+                    <i class="fas fa-lock prefix" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm validate" id="modalLRInput13" type="password">
+                    <label for="modalLRInput13" data-success="right" data-error="wrong">Tu contraseña</label>
+                  </div>
+
+                  <div class="md-form form-sm mb-4">
+                    <i class="fas fa-lock prefix" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm validate" id="modalLRInput14" type="password">
+                    <label for="modalLRInput14" data-success="right" data-error="wrong">Repite la contraseña</label>
+                  </div>
+
+                  <div class="text-center form-sm mt-2">
+                    <button class="btn-success">Unirse <i class="fas fa-sign-in ml-1" aria-hidden="true"></i></button>
+                  </div>    
+                  
+                </div>
+                {{/if}}
+                <!--Footer-->
+                <div class="modal-footer">
+                  <button class="btn btn-success " type="button" data-dismiss="modal"><i class="fas fa-window-close" aria-hidden="true"></i></button>
+                </div>
+              </div>
+              <!--/.Panel 8-->
+            </div>
+
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+
+
+
+
+<!--{{#switch Tipo}}
+            {{#case '0'}}
+            <input type="checkbox" name="Tipo" checked>Dir. Entrega
+            {{/case}}
+            {{#case '1'}}
+            <input type="checkbox" name="Tipo" checked>Dir. Facturación
+            {{/case}}
+            {{#case '2'}}
+            <input type="checkbox" name="Tipo" checked>Dir. Entrega<br>
+            <input type="checkbox" name="Tipo" checked>Dir. Facturación
+            {{/case}}
+          {{/switch}}
+        </div>-->

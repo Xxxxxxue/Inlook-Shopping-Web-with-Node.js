@@ -1,0 +1,49 @@
+<div class="col-lg-9">
+	<div class="text-right">
+		{{#if adm}}
+		<a href="/perfil/misdisenos/otros/{{id}}"><button class="btn-success" title='diseños de los clientes'><i class="fas fa-user"></i></button></a>
+		{{/if}}
+		<a href="/perfil/misdisenos/s-add"><button class="btn-success"  data-toggle="modal" data-target="#disenoadd"><i class="fas fa-upload"></i></button></a>
+	    <a href="/perfil"><button class="btn-success">Volver</button></a>
+	</div>
+	<div style="background: #532665;">
+	<h4>Mis diseños</h4>
+	<br>
+		<!--tabla/lista de productos-->
+		<div class="row">
+			{{#each disenos}}
+	        <div class="col-md-4">
+	            <div class="card text-center">
+	                <div class="card-body">
+	                	<h4>ID: {{ID}}</h4>
+	                    <img class="card-img-top" src="{{imagen}}" style="height: 250px;border: 1px solid;">
+	                    <h4 class="card-title">{{Nombre}}</h4>
+               			<p class="card-text ">Precio: {{precio}} €</p>
+	                    <p class="card-text ">Fecha de creación: <br> {{time}}</p>
+	                    <button type="button" class="btn btn-danger" ><i class="fa fa-trash" onclick="elim({{ID}})"></i></button>
+	                    <a href="/perfil/misdisenos/s-edit/{{ID}}"><button class="btn btn-primary" data-toggle="modal" data-target="#disenoedit">Editar</button></a>
+	                </div>
+	            </div>
+	        </div>
+	       
+	       {{else}} 
+	        <div class="col text-center">
+	            <p>No hay diseños guardados.</p>        
+	        </div>
+	        {{/each}}
+
+		</div>
+			
+	</div>
+</div>
+
+<!------------------------------------------------------------------------------------------------------------------------->
+<script>
+	function elim(id) {
+      var op = confirm('¿Desea eliminar este diseño?');
+      if(op == true) 
+       location.href = '/perfil/misdisenos/s-elimir/'+ id;  // redireccionar alla
+      //window.open ---> // abre la pagina nueva html
+      
+    }
+</script>

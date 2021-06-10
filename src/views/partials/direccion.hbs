@@ -1,0 +1,78 @@
+<!--PARTE DIRECCION-->
+<hr style="border-top: 1px solid green;">
+<div class="row">
+  <div class="col-8">
+    <h4>Direciones</h4>
+  </div>
+  <div class="col text-right">
+    <a href="/perfil/datapers/dir-add"><button class="btn btn-info" data-toggle="modal" data-target="#Modal-a">Nueva dirección</button></a>
+  </div>
+</div>
+{{#each dirs}}
+<hr style="border-top: 1px solid green;">
+<div class="row">
+
+    <div class="col">
+      <p>Dirección: {{Direccion}}</p>
+      <p>Localidad: {{Localidad}}</p>
+      <p>Codigo Postal: {{CPostal}}</p>
+    </div>
+    <div class="col">
+      <p>Provincia: {{Provincia}}</p>
+      <p>País: {{Pais}}</p>      
+      <div class="row">
+        <div class="col-2">
+          <P>Tipo:</P>
+        </div>
+        <div class="col">
+          <input type="checkbox" name="entrega" {{entrega}}>Dir. Entrega
+        <br>
+          <input type="checkbox" id="f" name="factura" {{factura}}>Dir. Facturación
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-right">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" ><i class="fa fa-trash" onclick="elim({{ID}})"></i></button>
+      <a href="/perfil/datapers/dir-edit/{{ID}}"><button class="btn btn-primary" data-toggle="modal" data-target="#Modal-e">Editar</button></a>
+    </div>
+
+</div>
+
+
+
+{{else}}
+<div>
+  <hr style="border-top: 1px solid green;">
+  <p>No has guardado ninguna dirección.</p>
+
+</div>
+{{/each}}
+
+<!--------------------------------------------------------------------------------------------------------------->
+
+<script>
+  
+    //funcion ventana de confirmacion para eliminar direccion
+    function elim(id) {
+      var op = confirm('¿Desea eliminar esta dirección?');
+      if(op == true) 
+       location.href = '/perfil/datapers/dir-elimir/'+ id;  // redireccionar alla
+      //window.open ---> // abre la pagina nueva html
+      
+    }
+
+    //funcion para checked de los tipos de direccion, no funciona por id!!
+    /*function check() {
+      var Tipo = $('#t').val();
+      console.log('check');
+      if(Tipo == 1 || Tipo == 2)
+        document.getElementById('f').setAttribute('checked','true');
+      if(Tipo == 0 || Tipo == 2 )
+        document.getElementById('e').setAttribute('checked','true');
+    }
+
+    check(); //ejecuta funcion dentro de script*/
+
+</script>
